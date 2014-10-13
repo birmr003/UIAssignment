@@ -1,5 +1,10 @@
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.*;
 
 /**
  * User Interfaces - Checkpoint 5: Implementation
@@ -22,26 +27,88 @@ import java.awt.event.WindowEvent;
  */
 public class DriverlessCar {
 
+	/*
+	 * Class member declarations
+	 * Include all panel classes here
+	*/
 	
-	public static void main(String[] args) {
-		// create frame
-		LoginScreen login = new LoginScreen();
+	// content pane
+	private JPanel contentPane;
+	
+	// login screen
+	private LoginScreen loginScreenPanel;
+	
+	// main menu
+	private MainMenu mainMenuPanel;
+	
+	// menu bar - ie. date, time and a home button
+	private JPanel statusBar;
+	
+	private void GUIdisplay(){
 		
-		// validate frame
-		login.validate();
+		// This is the window that all of our panes will be stored in
+		JFrame frame = new JFrame("TEST MODE: Driverless Ambulance Interface v.1.0");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// inner class - Window Adaptor
-		class adapt extends WindowAdapter{
-			public void windowClosing(WindowEvent e)
-			{
-				System.exit(0);
+		
+		JPanel contentPane = new JPanel();
+		contentPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		contentPane.setLayout(new CardLayout());
+		
+		
+		
+		// screen initializations
+		loginScreenPanel = new LoginScreen(contentPane, this);
+		mainMenuPanel = new MainMenu(contentPane,this);
+		
+		// add each screen to the contentPane
+		contentPane.add(loginScreenPanel,  "Login");
+		contentPane.add(mainMenuPanel, "Main Menu");
+		
+		
+		
+		// Create a time label that automatically updates
+		final JLabel timeLabel = new JLabel();
+		Font font = new Font("Arial", Font.BOLD, 24);
+		timeLabel.setFont(font);
+		final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+		ActionListener timerListener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e){
+				Date date = new Date();
+				String time = timeFormat.format(date);
+				timeLabel.setText(time);
 			}
-		}
+		};
+		Timer timer = new Timer(1000, timerListener);
+		timer.setInitialDelay(0);
+		timer.start();
 		
-		// Add listener - modified to use inner class
-		login.addWindowListener(new adapt());
 		
-		// Set the frame as visible
-		login.setVisible(true);
+		// create status(menu) bar and the time and any other icons to it
+		statusBar = new JPanel();
+		statusBar.add(timeLabel,BorderLayout.CENTER);
+
+		
+		
+		frame.getContentPane().add(statusBar, BorderLayout.PAGE_START);
+		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
+		frame.pack();
+		frame.setLocationByPlatform(true);
+		frame.setSize(900,900);
+		frame.setResizable(false);
+		frame.setVisible(true);
+	}
+	
+	
+	
+	// main method
+	public static void main(String[] args) {	
+	SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				new DriverlessCar().GUIdisplay();
+			}
+		});
 	}
 }
+
