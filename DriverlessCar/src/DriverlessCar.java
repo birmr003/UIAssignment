@@ -42,7 +42,7 @@ public class DriverlessCar {
 	private MainMenu mainMenuPanel;
 	
 	// menu bar - ie. date, time and a home button
-	private JPanel statusBar;
+	private MenuBar statusBar;
 	
 	private void GUIdisplay(){
 		
@@ -67,27 +67,11 @@ public class DriverlessCar {
 		
 		
 		
-		// Create a time label that automatically updates
-		final JLabel timeLabel = new JLabel();
-		Font font = new Font("Arial", Font.BOLD, 24);
-		timeLabel.setFont(font);
-		final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-		ActionListener timerListener = new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e){
-				Date date = new Date();
-				String time = timeFormat.format(date);
-				timeLabel.setText(time);
-			}
-		};
-		Timer timer = new Timer(1000, timerListener);
-		timer.setInitialDelay(0);
-		timer.start();
+
 		
 		
 		// create status(menu) bar and the time and any other icons to it
-		statusBar = new JPanel();
-		statusBar.add(timeLabel,BorderLayout.CENTER);
+		statusBar = new MenuBar(contentPane,this);
 
 		
 		

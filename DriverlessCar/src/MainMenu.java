@@ -32,7 +32,7 @@ public class MainMenu extends JPanel {
 		setBackground(Color.gray.brighter());
 		
 		JSplitPane j = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		j.setPreferredSize(new Dimension(1290,890));
+		j.setPreferredSize(new Dimension(1300,800));
 		//JPanel grid = new JPanel(new GridLayout(1,2));
 		//grid.setPreferredSize(new Dimension(600,700));
 		
@@ -44,9 +44,8 @@ public class MainMenu extends JPanel {
 		
 		j.setLeftComponent(g);
 		j.setRightComponent(g2);
-		//j.setDividerSize(0);
-		j.setResizeWeight(0.45);
-		j.setDividerLocation(0.45);
+		j.setResizeWeight(0.5);
+		j.setDividerLocation(0.5);
 		j.setEnabled(false);
 
 
