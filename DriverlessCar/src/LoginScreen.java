@@ -31,10 +31,16 @@ public class LoginScreen extends JPanel {
 		setBackground(Color.gray.brighter());
 		submitButton = new JButton("Log in");
 		
+		
+		
+		
 		// login form
 		JPanel loginForm = new JPanel(new GridLayout(6,1,0,15));
 		loginForm.setPreferredSize(new Dimension(600,700));
 		loginForm.setBackground(Color.gray.brighter());
+		
+		
+		
 		
 		// create username/password fields
 		userField = new JTextField();
@@ -42,13 +48,19 @@ public class LoginScreen extends JPanel {
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Arial",Font.PLAIN, 48));
 		
+		
+		
+		
 		// set username/password label text
 		userLabel = new JLabel("User ID");
 		userLabel.setFont(new Font("Arial", Font.BOLD,48));
-		
 		passwordLabel = new JLabel("Password");
 		passwordLabel.setFont(new Font("Arial", Font.BOLD,48));
 
+		
+		
+		
+		
 		// title details (ie. please enter in details)   ## NOT YET FULLY FUNCTIONAL
 		JPanel title = new JPanel(new BorderLayout());
 		title.setBackground(Color.gray.brighter());
@@ -78,6 +90,7 @@ public class LoginScreen extends JPanel {
 				}
 				else{
 					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+					cardLayout.invalidateLayout(contentPane);
 					cardLayout.show(contentPane, "Main Menu");	
 				}
 							

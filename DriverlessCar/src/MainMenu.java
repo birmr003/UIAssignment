@@ -30,7 +30,33 @@ public class MainMenu extends JPanel {
 		contentPane = panel;
 		setOpaque(true);
 		setBackground(Color.gray.brighter());
-		add(new JLabel("Main Menu Label"));
+		
+		JSplitPane j = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		j.setPreferredSize(new Dimension(1290,890));
+		//JPanel grid = new JPanel(new GridLayout(1,2));
+		//grid.setPreferredSize(new Dimension(600,700));
+		
+
+		JPanel g = new JPanel();
+		JPanel g2 = new JPanel();
+		
+		g.setBackground(Color.gray.darker());
+		
+		j.setLeftComponent(g);
+		j.setRightComponent(g2);
+		//j.setDividerSize(0);
+		j.setResizeWeight(0.45);
+		j.setDividerLocation(0.45);
+		j.setEnabled(false);
+
+
+		
+		add(j);
+
+		
+		
+		
+		
 	}
 	
 	

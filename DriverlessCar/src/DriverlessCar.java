@@ -95,7 +95,7 @@ public class DriverlessCar {
 		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationByPlatform(true);
-		frame.setSize(900,900);
+		frame.setSize(1300,900);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
