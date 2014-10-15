@@ -57,8 +57,8 @@ public class MainMenu extends JPanel {
 		// left side
 		JPanel leftSide = new JPanel(new FlowLayout(0,0,0));
 				
-		leftSide.setPreferredSize(new Dimension(650,720));
-
+		leftSide.setMaximumSize(new Dimension(650,720));
+		leftSide.setMinimumSize(new Dimension(650,720));
 				
 
 		/*
@@ -200,9 +200,24 @@ public class MainMenu extends JPanel {
 		};
 		
 		for(int i=0, length = leftSideButtons.length; i<length; i++){
-			leftSideButtons[i].setPreferredSize(new Dimension(649/length , 77));
+			leftSideButtons[i].setPreferredSize(new Dimension(650/length , 77));
 			leftSide_r4.add(leftSideButtons[i]);
 		}
+		
+		
+		
+		leftSideButtons[1] .addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout?",  JOptionPane.YES_NO_OPTION);
+				if(selection == JOptionPane.YES_OPTION){
+					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+					cardLayout.invalidateLayout(contentPane);
+					cardLayout.show(contentPane, "Login");	
+				}
+			}
+		});
+		
+		
 
 		
 
