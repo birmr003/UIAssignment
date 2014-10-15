@@ -65,21 +65,11 @@ public class DriverlessCar {
 		contentPane.add(loginScreenPanel,  "Login");
 		contentPane.add(mainMenuPanel, "Main Menu");
 		
-		
-		
-
-		
-		
-		// create status(menu) bar and the time and any other icons to it
-		statusBar = new MenuBar(contentPane,this);
-
-		
-		
-		frame.getContentPane().add(statusBar, BorderLayout.PAGE_START);
+		//frame.getContentPane().add(statusBar, BorderLayout.PAGE_START);
 		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationByPlatform(true);
-		frame.setSize(1300,900);
+		frame.setSize(1301,901);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
