@@ -4,6 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import Screens.JobManagement;
+import Screens.RouteManagement;
+
 
 
 
@@ -17,36 +20,49 @@ public class MainMenu extends JPanel {
 	private MenuBar topMenu;
 	private JPanel contentPane;
 	private JPanel rightSide;
+	
 	private JButton buttonTopLeft;
+	private JButton buttonTopRight;
+	private JButton buttonBottomRight;
+	private JButton buttonBottomLeft;
+	
+	private JButton buttonLogout;
+	private JButton buttonEmergencyMode;
+	private JButton buttonManualDriving;
+
 	
 	
 	public MainMenu(JPanel panel, DriverlessCar mainLayout){
 		contentPane = panel;
 		setOpaque(true);
 		setBackground(Color.gray.brighter());
-		//setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		
 		JSplitPane j = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		j.setPreferredSize(new Dimension(1270,730));
-
+		j.setEnabled(false);
 		
 		JPanel leftSide = getLeftSide();
 		
 		rightSide = new JPanel(new CardLayout());
 		rightSide = getRightSide();
-		//rightSide.setPreferredSize(new Dimension(580,750));
 		
 
-		
+		// GPS SIDE
 		j.setLeftComponent(leftSide);
+		
+		// CONTENT SIDE
 		j.setRightComponent(rightSide);
 
-		j.setEnabled(false);
+		// SET BUTTON LISTENERS
+		addListeners();
+		
 
 		
 		topMenu = new MenuBar(contentPane,mainLayout);
 		
+		
 		add(topMenu,BorderLayout.PAGE_START);
+		
 		add(j);
 	}
 	
@@ -74,7 +90,7 @@ public class MainMenu extends JPanel {
 		
 		// Left Side r1
 		leftSide_r1_elem[0].setPreferredSize(new Dimension(175, 200));
-		JButton buttonTopRight = new JButton(
+		buttonTopRight = new JButton(
 				"<html>" + "CURRENT JOBS<br><br>" + "3" + "</html>"
 				
 				);
@@ -83,7 +99,7 @@ public class MainMenu extends JPanel {
 		
 		
 		// r1 Camera - Front View
-		ImageIcon frontViewImage = new ImageIcon(MainMenu.class.getResource("frontview.jpg"));
+		ImageIcon frontViewImage = new ImageIcon(MainMenu.class.getResource("Images/frontview.jpg"));
 		leftSide_r1_elem[1].add(new JLabel(frontViewImage));
 		leftSide_r1_elem[1].setPreferredSize(new Dimension(300, 200));
 		
@@ -126,13 +142,13 @@ public class MainMenu extends JPanel {
 		
 		// LEFT CAMERA
 		leftSide_r2_elem[0].setPreferredSize(new Dimension(175,leftSide_r2.getPreferredSize().height));
-		ImageIcon leftViewImage = new ImageIcon(MainMenu.class.getResource("leftview.jpg"));
+		ImageIcon leftViewImage = new ImageIcon(MainMenu.class.getResource("Images/leftview.jpg"));
 		leftSide_r2_elem[0].add(new JLabel(leftViewImage));
 		
 		
 		// MAP
 		leftSide_r2_elem[1].setPreferredSize(new Dimension(300, leftSide_r2.getPreferredSize().height));
-		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("gps.jpg"));
+		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("Images/gps.jpg"));
 		leftSide_r2_elem[1].add(new JLabel(gpsImage));
 		
 		
@@ -140,7 +156,7 @@ public class MainMenu extends JPanel {
 		leftSide_r2_elem[2].setBackground(Color.YELLOW);
 		leftSide_r2_elem[2].setPreferredSize(new Dimension(175, leftSide_r2.getPreferredSize().height));
 		leftSide_r2_elem[2].setPreferredSize(new Dimension(175,leftSide_r2.getPreferredSize().height));
-		ImageIcon rightViewImage = new ImageIcon(MainMenu.class.getResource("rightview.jpg"));
+		ImageIcon rightViewImage = new ImageIcon(MainMenu.class.getResource("Images/rightview.jpg"));
 		leftSide_r2_elem[2].add(new JLabel(rightViewImage));
 		
 		
@@ -163,7 +179,7 @@ public class MainMenu extends JPanel {
 		};
 		
 		leftSide_r3_elem[0].setPreferredSize(new Dimension(175, 200));
-		JButton buttonBottomRight = new JButton();
+		buttonBottomRight = new JButton();
 		buttonBottomRight.setPreferredSize(new Dimension(175,200));
 		leftSide_r3_elem[0].add(buttonBottomRight);
 		
@@ -173,14 +189,14 @@ public class MainMenu extends JPanel {
 		// Rear View Camera
 		leftSide_r3_elem[1].setBackground(Color.BLUE);
 		leftSide_r3_elem[1].setPreferredSize(new Dimension(300, 200));
-		ImageIcon rearViewImage = new ImageIcon(MainMenu.class.getResource("rearview.jpg"));
+		ImageIcon rearViewImage = new ImageIcon(MainMenu.class.getResource("Images/rearview.jpg"));
 		leftSide_r3_elem[1].add(new JLabel(rearViewImage));
 		
 		
 		
 		
 		leftSide_r3_elem[2].setPreferredSize(new Dimension(175, 200));
-		JButton buttonBottomLeft = new JButton();
+		buttonBottomLeft = new JButton();
 		buttonBottomLeft.setPreferredSize(new Dimension(175,200));
 		leftSide_r3_elem[2].add(buttonBottomLeft);
 		
@@ -193,34 +209,26 @@ public class MainMenu extends JPanel {
 		
 		JPanel leftSide_r4 = new JPanel(new FlowLayout(0,0,0));
 		
-		JButton leftSideButtons[] = {
-				new JButton("TOGGLE EMERGENCY MODE"),
-				new JButton("LOGOUT"),
-				new JButton("TOGGLE MANUAL DRIVING")
-		};
+
 		
-		for(int i=0, length = leftSideButtons.length; i<length; i++){
-			leftSideButtons[i].setPreferredSize(new Dimension(650/length , 77));
-			leftSide_r4.add(leftSideButtons[i]);
+			
+			
+		
+
+		buttonLogout = new JButton("LOGOUT");
+		buttonEmergencyMode = new JButton("TOGGLE EMERGENCY MODE");
+		buttonManualDriving = new JButton("TOGGLE MANUAL DRIVING");
+		{
+			Dimension size = new Dimension(650/3, 77);
+			buttonEmergencyMode.setPreferredSize(size);
+			buttonLogout.setPreferredSize(size);
+			buttonManualDriving.setPreferredSize(size);
+			leftSide_r4.add(buttonEmergencyMode);
+			leftSide_r4.add(buttonLogout);
+			leftSide_r4.add(buttonManualDriving);
 		}
 		
 		
-		
-		leftSideButtons[1] .addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout?",  JOptionPane.YES_NO_OPTION);
-				if(selection == JOptionPane.YES_OPTION){
-					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-					cardLayout.invalidateLayout(contentPane);
-					cardLayout.show(contentPane, "Login");	
-				}
-			}
-		});
-		
-		
-
-		
-
 		
 		// add each row to the left side of the menu (GPS + Buttons)
 		leftSide.add(leftSide_r1);
@@ -228,9 +236,39 @@ public class MainMenu extends JPanel {
 		leftSide.add(leftSide_r3);
 		leftSide.add(leftSide_r4);
 		
+
+		return leftSide;
+		
+	}
+	
+	
+	
+	/*
+	 * All Screens to be shown on the right are added here.
+	 * Each one is in a separate java file, if a screen has its own separate screens
+	 * then it can have its own cardlayout or tabbed navigation(preferable + easy to code)
+	 * @return
+	 */
+	public JPanel getRightSide(){
+		final JPanel rightSide = new JPanel(new CardLayout());
+		
+		rightSide.setMaximumSize(new Dimension(520,720));
+		rightSide.setMinimumSize(new Dimension(520,720));
+		
+		
+		rightSide.add(new RouteManagement(rightSide),  "Add Route");
+		rightSide.add(new JobManagement(rightSide),  "Job Management");
 		
 
 		
+		
+		return rightSide;
+	}
+	
+	/*
+	 * Main menu button listeners
+	 */
+	public void addListeners(){
 		/*
 		 *Button Listeners 
 		 */
@@ -238,7 +276,9 @@ public class MainMenu extends JPanel {
 		
 		buttonTopRight.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null, "buttonTopRight");	
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				cardLayout.show(rightSide, "Job Management");	
 			}
 		});
 		
@@ -254,57 +294,49 @@ public class MainMenu extends JPanel {
 			}
 		});
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		return leftSide;
-		
-	}
-	
-	public JPanel getRightSide(){
-		final JPanel rightSide = new JPanel(new CardLayout());
-		
-		
-		rightSide.add(new RouteManagement(rightSide),  "Add Route");
-		rightSide.add(new michaelcommit(rightSide),  "test");
-		
-		
 		buttonTopLeft.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 				cardLayout.invalidateLayout(contentPane);
-				cardLayout.show(rightSide, "test");	
-				topMenu.setDestinationText(new JLabel("New Destination st, city, 3232"));
-
+				cardLayout.show(rightSide, "Add Route");	
+			}
+		});
+	
+	
+		buttonLogout.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout?",  JOptionPane.YES_NO_OPTION);
+				if(selection == JOptionPane.YES_OPTION){
+					
+					// set default frame back to home screen
+					CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+					cardLayout.invalidateLayout(contentPane);
+					cardLayout.show(rightSide, "Add Route");	
+					
+					
+					
+					CardLayout logout = (CardLayout) contentPane.getLayout();
+					logout.invalidateLayout(contentPane);
+					logout.show(contentPane, "Login");	
+				}
 			}
 		});
 		
-		/*
-		buttonTopLeft.addActionListener(new ActionListener(){
+		buttonEmergencyMode.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-				cardLayout.invalidateLayout(contentPane);
-				cardLayout.show(contentPane, "Login");	
-				JOptionPane.showMessageDialog(null, "buttonTopLeft");	
+				topMenu.changeEmergencyMode();
 			}
-		});*/
+		});
 		
+		buttonManualDriving.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				topMenu.changeDrivingMode();
+			}
+		});
+	
 		
-		return rightSide;
+	
 	}
-	
-	
-	
-	
 	
 	
 	

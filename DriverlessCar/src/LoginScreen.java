@@ -45,8 +45,10 @@ public class LoginScreen extends JPanel {
 		// create username/password fields
 		userField = new JTextField();
 		userField.setFont(new Font("Arial",Font.PLAIN, 48));
+		userField.setForeground(Color.BLUE);
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Arial",Font.PLAIN, 48));
+		passwordField.setForeground(Color.BLUE);
 		
 		
 		
@@ -81,14 +83,19 @@ public class LoginScreen extends JPanel {
 		loginForm.add(submitButton);
 
 		// Log in button event listener
+		// Will Present the user with a message if username && password != "test"
 		submitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(!(userField.getText().equals("test") || passwordField.equals("test"))){
+				if(!(userField.getText().equals("test") && passwordField.getText().equals("test"))){
 					JOptionPane.showMessageDialog(null, 
-							"Please enter in your correct User ID and Password."
+							"Please enter in your correct User ID and Password.",
+							"Wrong Credentials",
+							JOptionPane.ERROR_MESSAGE
 							);
 				}
 				else{
+					userField.setText("");
+					passwordField.setText("");
 					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
 					cardLayout.invalidateLayout(contentPane);
 					cardLayout.show(contentPane, "Main Menu");	
@@ -96,6 +103,9 @@ public class LoginScreen extends JPanel {
 							
 			}
 		});
+		
+		
+		
 		add(loginForm);
 	}
 	
