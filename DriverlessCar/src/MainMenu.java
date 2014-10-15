@@ -4,9 +4,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import Screens.JobManagement;
-import Screens.RouteManagement;
-
 
 
 
@@ -17,7 +14,7 @@ import Screens.RouteManagement;
  */
 public class MainMenu extends JPanel {
 	
-	private MenuBar topMenu;
+	public MenuBar topMenu;
 	private JPanel contentPane;
 	private JPanel rightSide;
 	
@@ -95,6 +92,8 @@ public class MainMenu extends JPanel {
 				
 				);
 		buttonTopRight.setPreferredSize(new Dimension(175,200));
+		buttonTopRight.setBackground(Color.decode("#16A79D"));
+		
 		leftSide_r1_elem[0].add(buttonTopRight);
 		
 		
@@ -104,15 +103,13 @@ public class MainMenu extends JPanel {
 		leftSide_r1_elem[1].setPreferredSize(new Dimension(300, 200));
 		
 		
-		
-		// Right side r1
-		//leftSide_r1_elem[2].setBackground(Color.RED);
 
 		
 		leftSide_r1_elem[2].setPreferredSize(new Dimension(175, 200));
 		buttonTopLeft = new JButton(
 				"<html>" + "ADD OR CHANGE ROUTE<br>" + "</html>"
 				);
+		buttonTopLeft.setBackground(Color.decode("#CF4858"));
 		buttonTopLeft.setPreferredSize(new Dimension(174,200));
 		
 
@@ -153,7 +150,6 @@ public class MainMenu extends JPanel {
 		
 		
 		// RIGHT CAMERA
-		leftSide_r2_elem[2].setBackground(Color.YELLOW);
 		leftSide_r2_elem[2].setPreferredSize(new Dimension(175, leftSide_r2.getPreferredSize().height));
 		leftSide_r2_elem[2].setPreferredSize(new Dimension(175,leftSide_r2.getPreferredSize().height));
 		ImageIcon rightViewImage = new ImageIcon(MainMenu.class.getResource("Images/rightview.jpg"));
@@ -179,15 +175,15 @@ public class MainMenu extends JPanel {
 		};
 		
 		leftSide_r3_elem[0].setPreferredSize(new Dimension(175, 200));
-		buttonBottomRight = new JButton();
+		buttonBottomRight = new JButton("PARK VEHICLE");
 		buttonBottomRight.setPreferredSize(new Dimension(175,200));
+		buttonBottomRight.setBackground(Color.decode("#80628B"));
 		leftSide_r3_elem[0].add(buttonBottomRight);
 		
 
 		
 		
 		// Rear View Camera
-		leftSide_r3_elem[1].setBackground(Color.BLUE);
 		leftSide_r3_elem[1].setPreferredSize(new Dimension(300, 200));
 		ImageIcon rearViewImage = new ImageIcon(MainMenu.class.getResource("Images/rearview.jpg"));
 		leftSide_r3_elem[1].add(new JLabel(rearViewImage));
@@ -196,8 +192,9 @@ public class MainMenu extends JPanel {
 		
 		
 		leftSide_r3_elem[2].setPreferredSize(new Dimension(175, 200));
-		buttonBottomLeft = new JButton();
+		buttonBottomLeft = new JButton("EMERGENCY STOP");
 		buttonBottomLeft.setPreferredSize(new Dimension(175,200));
+		buttonBottomLeft.setBackground(Color.decode("#F4AC42"));
 		leftSide_r3_elem[2].add(buttonBottomLeft);
 		
 		
@@ -216,6 +213,8 @@ public class MainMenu extends JPanel {
 		
 
 		buttonLogout = new JButton("LOGOUT");
+		buttonLogout.setForeground(Color.decode("#FFFFFF"));
+		buttonLogout.setBackground(Color.decode("#003366"));
 		buttonEmergencyMode = new JButton("TOGGLE EMERGENCY MODE");
 		buttonManualDriving = new JButton("TOGGLE MANUAL DRIVING");
 		{
