@@ -15,35 +15,54 @@ import javax.swing.border.EmptyBorder;
 public class MainMenu extends JPanel {
 	
 	public MenuBar topMenu;
+	
 	private JPanel contentPane;
+	
 	private JPanel rightSide;
 	
 	private JButton buttonTopLeft;
+	
 	private JButton buttonTopRight;
+	
 	private JButton buttonBottomRight;
+	
 	private JButton buttonBottomLeft;
 	
 	private JButton buttonLogout;
+	
 	private JButton buttonEmergencyMode;
+	
 	private JButton buttonManualDriving;
 
 	
-	
+	/**
+	 * Constructor
+	 * @param panel
+	 * @param mainLayout
+	 */
 	public MainMenu(JPanel panel, DriverlessCar mainLayout){
 		contentPane = panel;
 		setOpaque(true);
 		setBackground(Color.gray.brighter());
 		
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Set up JSplitPane for left(GPS) and right(Content)
+		 * ------------------------------------------------------------------------------
+		 */
+
 		JSplitPane j = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		j.setPreferredSize(new Dimension(1270,730));
 		j.setEnabled(false);
 		
+		
+		// Left side
 		JPanel leftSide = getLeftSide();
 		
-		rightSide = new JPanel(new CardLayout());
+		// rightSide
+		//rightSide = new JPanel(new CardLayout());   // removed to see if still works
 		rightSide = getRightSide();
 		
-
 		// GPS SIDE
 		j.setLeftComponent(leftSide);
 		
@@ -54,164 +73,196 @@ public class MainMenu extends JPanel {
 		addListeners();
 		
 
-		
+		// Add menu bar
 		topMenu = new MenuBar(contentPane,mainLayout);
 		
 		
-		add(topMenu,BorderLayout.PAGE_START);
 		
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Add menu bar and JSplitPane to layout
+		 * ------------------------------------------------------------------------------
+		 */
+		add(topMenu,BorderLayout.PAGE_START);
 		add(j);
+		
+		
+		
+		
 	}
 	
 	
 	
 	private JPanel getLeftSide(){
 		
-		// left side
+		
+		// Set up left side Panel
 		JPanel leftSide = new JPanel(new FlowLayout(0,0,0));
-				
 		leftSide.setMaximumSize(new Dimension(650,720));
 		leftSide.setMinimumSize(new Dimension(650,720));
 				
 
 		/*
-		 * Left Side - Row 2
+		 * ------------------------------------------------------------------------------
+		 * Left Side - Top Row - Row 1
+		 * 
+		 * 	--	Left: Button  (175, 200)
+		 * 	--	Middle: Camera Feed (300,200)
+		 * 	--	Right: Button  (175, 200)
+		 * 
+		 * ------------------------------------------------------------------------------
 		 */
-		JPanel leftSide_r1 = new JPanel(new FlowLayout(0,0,0));
-		JPanel leftSide_r1_elem[] = {
+		
+	
+		// Create r1 panel with 3 empty elements 
+		JPanel r1 = new JPanel(new FlowLayout(0,0,0));
+		JPanel r1_elem[] = {
 				new JPanel(new FlowLayout(0,0,0)),
 				new JPanel(new FlowLayout(0,0,0)),
 				new JPanel(new FlowLayout(0,0,0))
 		};
 				
 		
-		// Left Side r1
-		leftSide_r1_elem[0].setPreferredSize(new Dimension(175, 200));
-		buttonTopRight = new JButton(
-				"<html>" + "CURRENT JOBS<br><br>" + "3" + "</html>"
-				
-				);
+		// Top Right Button
+		r1_elem[0].setPreferredSize(new Dimension(175, 200));
+		buttonTopRight = new JButton("<html>" + "CURRENT JOBS<br><br>" + "3" + "</html>");
 		buttonTopRight.setPreferredSize(new Dimension(175,200));
 		buttonTopRight.setBackground(Color.decode("#16A79D"));
+		r1_elem[0].add(buttonTopRight);
 		
-		leftSide_r1_elem[0].add(buttonTopRight);
 		
 		
-		// r1 Camera - Front View
+		// Middle - Camera View
 		ImageIcon frontViewImage = new ImageIcon(MainMenu.class.getResource("Images/frontview.jpg"));
-		leftSide_r1_elem[1].add(new JLabel(frontViewImage));
-		leftSide_r1_elem[1].setPreferredSize(new Dimension(300, 200));
+		r1_elem[1].add(new JLabel(frontViewImage));
+		r1_elem[1].setPreferredSize(new Dimension(300, 200));
 		
 		
 
-		
-		leftSide_r1_elem[2].setPreferredSize(new Dimension(175, 200));
-		buttonTopLeft = new JButton(
-				"<html>" + "ADD OR CHANGE ROUTE<br>" + "</html>"
-				);
+		// Top Left Button
+		r1_elem[2].setPreferredSize(new Dimension(175, 200));
+		buttonTopLeft = new JButton("<html>" + "ADD OR CHANGE ROUTE<br>" + "</html>");
 		buttonTopLeft.setBackground(Color.decode("#CF4858"));
 		buttonTopLeft.setPreferredSize(new Dimension(174,200));
-		
-
-		
+		r1_elem[2].add(buttonTopLeft);
 		
 		
-		leftSide_r1_elem[2].add(buttonTopLeft);
 		
-		
-		for(JPanel i : leftSide_r1_elem){
-			leftSide_r1.add(i,FlowLayout.LEFT);
+		// Add elements to row 1 panel
+		for(JPanel i : r1_elem){
+			r1.add(i,FlowLayout.LEFT);
 		}
 		
 		
+		
+		
 		/*
-		 * Left Row 2 Specification
+		 * ------------------------------------------------------------------------------
+		 * Left Side - Middle Row - Row 2
+		 * 
+		 * 	--	Left: Button  (175, 250)
+		 * 	--	Middle: Camera Feed (300, 250)
+		 * 	--	Right: Button  (175, 250)
+		 * ------------------------------------------------------------------------------
 		 */
-		JPanel leftSide_r2 = new JPanel(new FlowLayout(0,0,0));
-		leftSide_r2.setPreferredSize(new Dimension(650, 250));
-
-		JPanel leftSide_r2_elem[] = {
+		
+		// Set up row 2 panel
+		JPanel r2 = new JPanel(new FlowLayout(0,0,0));
+		r2.setPreferredSize(new Dimension(650, 250));
+		JPanel r2_elem[] = {
 				new JPanel(new FlowLayout(0,0,0)),
 				new JPanel(new FlowLayout(0,0,0)),
 				new JPanel(new FlowLayout(0,0,0))
 		};
 
 		
-		// LEFT CAMERA
-		leftSide_r2_elem[0].setPreferredSize(new Dimension(175,leftSide_r2.getPreferredSize().height));
+		// Middle - Left Camera
+		r2_elem[0].setPreferredSize(new Dimension(175,r2.getPreferredSize().height));
 		ImageIcon leftViewImage = new ImageIcon(MainMenu.class.getResource("Images/leftview.jpg"));
-		leftSide_r2_elem[0].add(new JLabel(leftViewImage));
+		r2_elem[0].add(new JLabel(leftViewImage));
 		
 		
-		// MAP
-		leftSide_r2_elem[1].setPreferredSize(new Dimension(300, leftSide_r2.getPreferredSize().height));
+		// Middle - Map
+		r2_elem[1].setPreferredSize(new Dimension(300, r2.getPreferredSize().height));
 		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("Images/gps.jpg"));
-		leftSide_r2_elem[1].add(new JLabel(gpsImage));
+		r2_elem[1].add(new JLabel(gpsImage));
 		
 		
-		// RIGHT CAMERA
-		leftSide_r2_elem[2].setPreferredSize(new Dimension(175, leftSide_r2.getPreferredSize().height));
-		leftSide_r2_elem[2].setPreferredSize(new Dimension(175,leftSide_r2.getPreferredSize().height));
+		// Middle - Right Camera
+		r2_elem[2].setPreferredSize(new Dimension(175, r2.getPreferredSize().height));
+		r2_elem[2].setPreferredSize(new Dimension(175,r2.getPreferredSize().height));
 		ImageIcon rightViewImage = new ImageIcon(MainMenu.class.getResource("Images/rightview.jpg"));
-		leftSide_r2_elem[2].add(new JLabel(rightViewImage));
+		r2_elem[2].add(new JLabel(rightViewImage));
 		
 		
-		
-		
-		
-		for(JPanel i : leftSide_r2_elem){
-			leftSide_r2.add(i);
+		// Add elements to row 2 panel
+		for(JPanel i : r2_elem){
+			r2.add(i);
 		}
 		
 		
 		/*
-		 * Row 3 Specification
+		 * ------------------------------------------------------------------------------
+		 * Left Side - Second-Bottom Row - Row 3
+		 * 
+		 * 	--	Left: Button  (175, 200)
+		 * 	--	Middle: Camera Feed (300,200)
+		 * 	--	Right: Button  (175, 200)
+		 * 
+		 * ------------------------------------------------------------------------------
 		 */
-		JPanel leftSide_r3 = new JPanel(new FlowLayout(0,0,0));
-		JPanel leftSide_r3_elem[] = {
+		
+		// Set up row 3 panel
+		JPanel r3 = new JPanel(new FlowLayout(0,0,0));
+		JPanel r3_elem[] = {
 				new JPanel(new FlowLayout(0,0,0)),
 				new JPanel(new FlowLayout(0,0,0)),
 				new JPanel(new FlowLayout(0,0,0))
 		};
 		
-		leftSide_r3_elem[0].setPreferredSize(new Dimension(175, 200));
+		
+		// Right Side button
+		r3_elem[0].setPreferredSize(new Dimension(175, 200));
 		buttonBottomRight = new JButton("PARK VEHICLE");
 		buttonBottomRight.setPreferredSize(new Dimension(175,200));
 		buttonBottomRight.setBackground(Color.decode("#80628B"));
-		leftSide_r3_elem[0].add(buttonBottomRight);
+		r3_elem[0].add(buttonBottomRight);
 		
 
-		
-		
 		// Rear View Camera
-		leftSide_r3_elem[1].setPreferredSize(new Dimension(300, 200));
+		r3_elem[1].setPreferredSize(new Dimension(300, 200));
 		ImageIcon rearViewImage = new ImageIcon(MainMenu.class.getResource("Images/rearview.jpg"));
-		leftSide_r3_elem[1].add(new JLabel(rearViewImage));
+		r3_elem[1].add(new JLabel(rearViewImage));
 		
 		
-		
-		
-		leftSide_r3_elem[2].setPreferredSize(new Dimension(175, 200));
+		// Left side button
+		r3_elem[2].setPreferredSize(new Dimension(175, 200));
 		buttonBottomLeft = new JButton("EMERGENCY STOP");
 		buttonBottomLeft.setPreferredSize(new Dimension(175,200));
 		buttonBottomLeft.setBackground(Color.decode("#F4AC42"));
-		leftSide_r3_elem[2].add(buttonBottomLeft);
+		r3_elem[2].add(buttonBottomLeft);
 		
 		
-		
-		
-		for(JPanel i : leftSide_r3_elem){
-			leftSide_r3.add(i,FlowLayout.LEFT);
+		// Add elements to row 3
+		for(JPanel i : r3_elem){
+			r3.add(i,FlowLayout.LEFT);
 		}
 		
-		JPanel leftSide_r4 = new JPanel(new FlowLayout(0,0,0));
 		
-
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Left Side - Bottom Row - Row 4
+		 * 
+		 * Uses whatever space is left generally, could be bigger/smaller if needed
+		 * ------------------------------------------------------------------------------
+		 */
 		
-			
-			
 		
-
+		// New panel for row 4
+		JPanel r4 = new JPanel(new FlowLayout(0,0,0));
+	
+		
+		// Create / add buttons to row 4 panel
 		buttonLogout = new JButton("LOGOUT");
 		buttonLogout.setForeground(Color.decode("#FFFFFF"));
 		buttonLogout.setBackground(Color.decode("#003366"));
@@ -222,20 +273,25 @@ public class MainMenu extends JPanel {
 			buttonEmergencyMode.setPreferredSize(size);
 			buttonLogout.setPreferredSize(size);
 			buttonManualDriving.setPreferredSize(size);
-			leftSide_r4.add(buttonEmergencyMode);
-			leftSide_r4.add(buttonLogout);
-			leftSide_r4.add(buttonManualDriving);
+			r4.add(buttonEmergencyMode);
+			r4.add(buttonLogout);
+			r4.add(buttonManualDriving);
 		}
 		
 		
 		
-		// add each row to the left side of the menu (GPS + Buttons)
-		leftSide.add(leftSide_r1);
-		leftSide.add(leftSide_r2);
-		leftSide.add(leftSide_r3);
-		leftSide.add(leftSide_r4);
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Add each row to the left side panel and return
+		 * ------------------------------------------------------------------------------
+		 */
+		leftSide.add(r1);
+		leftSide.add(r2);
+		leftSide.add(r3);
+		leftSide.add(r4);
 		
-
+		
+		// return the completed panel
 		return leftSide;
 		
 	}
@@ -268,9 +324,6 @@ public class MainMenu extends JPanel {
 	 * Main menu button listeners
 	 */
 	public void addListeners(){
-		/*
-		 *Button Listeners 
-		 */
 
 		
 		buttonTopRight.addActionListener(new ActionListener(){
@@ -281,17 +334,23 @@ public class MainMenu extends JPanel {
 			}
 		});
 		
+		
+		
 		buttonBottomLeft.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JOptionPane.showMessageDialog(null, "buttonBottomLeft");	
 			}
 		});
 		
+		
+		
 		buttonBottomRight.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JOptionPane.showMessageDialog(null, "buttonBottomRight");	
 			}
 		});
+		
+		
 		
 		buttonTopLeft.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -302,6 +361,8 @@ public class MainMenu extends JPanel {
 		});
 	
 	
+		
+		
 		buttonLogout.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout?",  JOptionPane.YES_NO_OPTION);
@@ -313,7 +374,6 @@ public class MainMenu extends JPanel {
 					cardLayout.show(rightSide, "Add Route");	
 					
 					
-					
 					CardLayout logout = (CardLayout) contentPane.getLayout();
 					logout.invalidateLayout(contentPane);
 					logout.show(contentPane, "Login");	
@@ -321,12 +381,16 @@ public class MainMenu extends JPanel {
 			}
 		});
 		
+		
+		
 		buttonEmergencyMode.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				topMenu.changeEmergencyMode();
 			}
 		});
 		
+		
+
 		buttonManualDriving.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				topMenu.changeDrivingMode();

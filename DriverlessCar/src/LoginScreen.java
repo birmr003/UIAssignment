@@ -6,17 +6,23 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * 
+ * Login Screen
  * @author 
  *
  */
 public class LoginScreen extends JPanel {
 
+	
 	private JPanel contentPane;
+	
 	private JButton submitButton;
+	
 	private JLabel userLabel;
+	
 	private JLabel passwordLabel;
+	
 	private JTextField userField;
+	
 	private JPasswordField passwordField;
 	
 	
@@ -34,55 +40,80 @@ public class LoginScreen extends JPanel {
 		
 		
 		
-		// login form
-		JPanel loginForm = new JPanel(new GridLayout(6,1,0,15));
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Create Login Form
+		 * ------------------------------------------------------------------------------
+		 */
+		JPanel loginForm = new JPanel(new GridLayout(7,1,0,15));
 		loginForm.setPreferredSize(new Dimension(600,700));
 		loginForm.setBackground(Color.gray.brighter());
 		
 		
 		
 		
-		// create username/password fields
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Create username and password fields
+		 * ------------------------------------------------------------------------------
+		 */
+		
+		// initialize Labels + Text Fields
+		userLabel = new JLabel("User ID");
 		userField = new JTextField();
+		passwordLabel = new JLabel("Password");
+		passwordField = new JPasswordField();
+		
+		// Fonts/Text Color
+		
+		userLabel.setFont(new Font("Arial", Font.BOLD,48));
 		userField.setFont(new Font("Arial",Font.PLAIN, 48));
 		userField.setForeground(Color.BLUE);
-		passwordField = new JPasswordField();
+		
+		passwordLabel.setFont(new Font("Arial", Font.BOLD,48));
 		passwordField.setFont(new Font("Arial",Font.PLAIN, 48));
 		passwordField.setForeground(Color.BLUE);
 		
-		
-		
-		
-		// set username/password label text
-		userLabel = new JLabel("User ID");
-		userLabel.setFont(new Font("Arial", Font.BOLD,48));
-		passwordLabel = new JLabel("Password");
-		passwordLabel.setFont(new Font("Arial", Font.BOLD,48));
 
 		
-		
-		
-		
-		// title details (ie. please enter in details)   ## NOT YET FULLY FUNCTIONAL
-		JPanel title = new JPanel(new BorderLayout());
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Message Prompt (ie. enter in your details) At top of screen
+		 * ------------------------------------------------------------------------------
+		 */
+		JPanel title = new JPanel(new GridLayout(2,0));
 		title.setBackground(Color.gray.brighter());
-		JLabel t1 = new JLabel("Please enter your credentials");
-		JLabel t2 = new JLabel("(TEST DEPLOYMENT: Username=test, Password=test)");
-		t2.setHorizontalAlignment(JLabel.CENTER);
-		t2.setVerticalAlignment(JLabel.CENTER);
+		JLabel t2 = new JLabel("(TEST DEPLOYMENT: Username=test, Password=test)", JLabel.CENTER);
 		
-		//title.add(t1);
-		title.add(t2, BorderLayout.CENTER);
+		title.add(new JLabel("Please enter your credentials.", JLabel.CENTER));
+		title.add(t2);
 		
-		// Add components to login grid form
+		
+		
+		
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Add Components to Layout
+		 * ------------------------------------------------------------------------------
+		 */
 		loginForm.add(title);
 		loginForm.add(userLabel);
 		loginForm.add(userField);
 		loginForm.add(passwordLabel);
 		loginForm.add(passwordField);
 		loginForm.add(submitButton);
+		
+		
+		
+		
+		
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Button Listeners (Submit Button)
+		 * ------------------------------------------------------------------------------
+		 */
 
-		// Log in button event listener
+		
 		// Will Present the user with a message if username && password != "test"
 		submitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -105,14 +136,12 @@ public class LoginScreen extends JPanel {
 		});
 		
 		
-		
+		// Add form to layout
 		add(loginForm);
+		
 	}
 	
-	@Override
-	public Dimension getPreferredSize(){
-		return (new Dimension(900,900));
-	}
+
 	
 	
 

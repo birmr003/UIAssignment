@@ -51,21 +51,39 @@ public class DriverlessCar {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
+		
+		
+		
+		/* A cardlayout allows as to add 'Cards' to the screen.
+		   This is a nifty layout as we can add the main menu/s + login
+		   screens and switch between them seemlessly without creating
+		   another window*/
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		contentPane.setLayout(new CardLayout());
 		
 		
 		
-		// screen initializations
+		/*
+		 * These are the main screens that are used so far.
+		 * This does not include screens such as 'Route Management'That are navigated through the main menu. 
+		 * For something like that, the screen would have its own subset of screens that it can get to
+		 * This gives us versatility by adding a class for each screen.
+		 */
 		loginScreenPanel = new LoginScreen(contentPane, this);
 		mainMenuPanel = new MainMenu(contentPane,this);
+		
+		
+		
 		
 		// add each screen to the contentPane
 		contentPane.add(loginScreenPanel,  "Login");
 		contentPane.add(mainMenuPanel, "Main Menu");
 		
-		//frame.getContentPane().add(statusBar, BorderLayout.PAGE_START);
+		
+		
+		
+		// set up frame layout
 		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationByPlatform(true);
