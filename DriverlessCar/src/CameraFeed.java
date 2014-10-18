@@ -46,8 +46,8 @@ public class CameraFeed extends JPanel {
 			ImageIcon viewImage = new ImageIcon(CameraFeed.class.getResource(url));
 			
 			
-			// TODO::set the size of the image to a reasonable size. Not necessarily the size of the frame
-			// because different aspect ratios etc.
+			// TODO::set the size of the image to a reasonable size. Not necessarily the size of the panel
+			// because different of aspect ratios etc. 
 			
 			
 			add(new JLabel(viewImage));

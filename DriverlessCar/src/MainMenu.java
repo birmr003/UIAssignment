@@ -22,9 +22,19 @@ public class MainMenu extends JPanel {
 	
 	private JButton buttonTopLeft;
 	
+	private JButton buttonFrontView;
+	
 	private JButton buttonTopRight;
 	
+	private JButton buttonLeftView;
+	
+	private JButton buttonMapView;
+	
+	private JButton buttonRightView;
+	
 	private JButton buttonBottomRight;
+	
+	private JButton buttonRearView;
 	
 	private JButton buttonBottomLeft;
 	
@@ -134,7 +144,11 @@ public class MainMenu extends JPanel {
 		
 		// Middle - Camera View
 		ImageIcon frontViewImage = new ImageIcon(MainMenu.class.getResource("Images/frontview.jpg"));
-		r1_elem[1].add(new JLabel(frontViewImage));
+		buttonFrontView = new JButton();
+		buttonFrontView.setIcon(frontViewImage);
+		buttonFrontView.setBorder(null);
+		buttonFrontView.setMargin(new Insets(0, 0, 0, 0));
+		r1_elem[1].add(buttonFrontView);
 		r1_elem[1].setPreferredSize(new Dimension(300, 200));
 		
 		
@@ -179,7 +193,11 @@ public class MainMenu extends JPanel {
 		// Middle - Left Camera
 		r2_elem[0].setPreferredSize(new Dimension(175,r2.getPreferredSize().height));
 		ImageIcon leftViewImage = new ImageIcon(MainMenu.class.getResource("Images/leftview.jpg"));
-		r2_elem[0].add(new JLabel(leftViewImage));
+		buttonLeftView = new JButton();
+		buttonLeftView.setIcon(leftViewImage);
+		buttonLeftView.setBorder(null);
+		buttonLeftView.setMargin(new Insets(0, 0, 0, 0));
+		r2_elem[0].add(buttonLeftView);
 		
 		
 		// Middle - Map
@@ -190,9 +208,12 @@ public class MainMenu extends JPanel {
 		
 		// Middle - Right Camera
 		r2_elem[2].setPreferredSize(new Dimension(175, r2.getPreferredSize().height));
-		r2_elem[2].setPreferredSize(new Dimension(175,r2.getPreferredSize().height));
 		ImageIcon rightViewImage = new ImageIcon(MainMenu.class.getResource("Images/rightview.jpg"));
-		r2_elem[2].add(new JLabel(rightViewImage));
+		buttonRightView = new JButton();
+		buttonRightView .setIcon(rightViewImage);
+		buttonRightView .setBorder(null);
+		buttonRightView .setMargin(new Insets(0, 0, 0, 0));
+		r2_elem[2].add(buttonRightView);
 		
 		
 		// Add elements to row 2 panel
@@ -232,7 +253,11 @@ public class MainMenu extends JPanel {
 		// Rear View Camera
 		r3_elem[1].setPreferredSize(new Dimension(300, 200));
 		ImageIcon rearViewImage = new ImageIcon(MainMenu.class.getResource("Images/rearview.jpg"));
-		r3_elem[1].add(new JLabel(rearViewImage));
+		buttonRearView = new JButton();
+		buttonRearView.setIcon(rearViewImage);
+		buttonRearView.setBorder(null);
+		buttonRearView.setMargin(new Insets(0, 0, 0, 0));
+		r3_elem[1].add(buttonRearView);
 		
 		
 		// Left side button
@@ -314,8 +339,12 @@ public class MainMenu extends JPanel {
 		rightSide.add(new RouteManagement(rightSide),  "Add Route");
 		rightSide.add(new JobManagement(rightSide),  "Job Management");
 		
-
-		
+		// add camera feeds (USE THE EXACT IMAGE NAME)
+		rightSide.add(new CameraFeed(rightSide, "frontview"),  "Front Camera View");
+		rightSide.add(new CameraFeed(rightSide, "rearview"),  "Rear Camera View");
+		rightSide.add(new CameraFeed(rightSide, "leftview"),  "Left Camera View");
+		rightSide.add(new CameraFeed(rightSide, "rightview"),  "Right Camera View");
+		//rightSide.add(new CameraFeed(rightSide, "frontview"),  "Front Camera View");   // GPS??
 		
 		return rightSide;
 	}
@@ -331,6 +360,42 @@ public class MainMenu extends JPanel {
 				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 				cardLayout.invalidateLayout(contentPane);
 				cardLayout.show(rightSide, "Job Management");	
+			}
+		});
+		
+		buttonFrontView.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				buttonFrontView.setBackground(Color.WHITE);
+				cardLayout.show(rightSide, "Front Camera View");	
+			}
+		});
+		
+		buttonRearView.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				buttonFrontView.setBackground(Color.WHITE);
+				cardLayout.show(rightSide, "Rear Camera View");	
+			}
+		});
+		
+		buttonLeftView.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				buttonFrontView.setBackground(Color.WHITE);
+				cardLayout.show(rightSide, "Left Camera View");	
+			}
+		});
+		
+		buttonRightView.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				buttonFrontView.setBackground(Color.WHITE);
+				cardLayout.show(rightSide, "Right Camera View");	
 			}
 		});
 		
