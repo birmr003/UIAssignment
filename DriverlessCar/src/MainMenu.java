@@ -403,7 +403,7 @@ public class MainMenu extends JPanel {
 		
 		buttonBottomLeft.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null, "buttonBottomLeft");	
+				JOptionPane.showMessageDialog(null, "buttonBottomLeft");
 			}
 		});
 		

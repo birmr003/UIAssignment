@@ -11,7 +11,7 @@ public class VehicleMaintenance extends JPanel {
 	private JPanel contentPane;
 	
 	public VehicleMaintenance(JPanel content) {
-		add(new JLabel("Route Management"));
+
 	}
 	
 
