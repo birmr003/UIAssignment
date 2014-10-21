@@ -65,6 +65,9 @@ public class MainMenu extends JPanel {
 		j.setPreferredSize(new Dimension(1270,730));
 		j.setEnabled(false);
 		
+		// Add menu bar
+		topMenu = new MenuBar(contentPane,mainLayout);
+		
 		
 		// Left side
 		JPanel leftSide = getLeftSide();
@@ -83,8 +86,7 @@ public class MainMenu extends JPanel {
 		addListeners();
 		
 
-		// Add menu bar
-		topMenu = new MenuBar(contentPane,mainLayout);
+		
 		
 		
 		
@@ -336,7 +338,7 @@ public class MainMenu extends JPanel {
 		rightSide.setMinimumSize(new Dimension(520,720));
 		
 		
-		rightSide.add(new RouteManagement(rightSide),  "Add Route");
+		rightSide.add(new RouteManagement(rightSide, topMenu),  "Add Route");
 		rightSide.add(new JobManagement(rightSide),  "Job Management");
 		
 		// add camera feeds (USE THE EXACT IMAGE NAME)

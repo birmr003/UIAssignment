@@ -13,12 +13,25 @@ public class RouteManagement extends JPanel {
 	private JLabel destinationLabel;
 	private JTextArea destination;
 	
-	
 	public RouteManagement(JPanel content) {
 		
 		JPanel content1 = new JPanel(new GridLayout(3,1,0,40));
 		content1.setMinimumSize(new Dimension(520,720));
 		
+		
+		add(content1);
+		destinationLabel = new JLabel("Destination");
+		destinationLabel.setFont(new Font("Arial", Font.BOLD,48));
+		content1.add(new JLabel("Route Management"));
+		content1.add(destinationLabel);
+		content1.add(new JTextArea());
+	}
+	
+	public RouteManagement(JPanel content, MenuBar m) {
+		
+		JPanel content1 = new JPanel(new GridLayout(3,1,0,40));
+		content1.setMinimumSize(new Dimension(520,720));
+		m.setDestinationText("asdasdasd");
 		
 		add(content1);
 		destinationLabel = new JLabel("Destination");
