@@ -15,7 +15,7 @@ public class JobManagement extends JPanel {
 
 	private JPanel contentPane;
 	
-	//
+	// not necessarily needed, but added anyway
 	public int jobCount;
 	
 	/**
@@ -24,10 +24,12 @@ public class JobManagement extends JPanel {
 	 */
 	public JobManagement(JPanel content) {
 		contentPane = content;
+		
+		//TODO::entire panel design :)
+		
+		
 		add(new JLabel("Job Management"));
 		
-		
-		System.out.println(getParent());
 		
 	}
 	
