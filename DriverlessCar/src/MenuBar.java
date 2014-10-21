@@ -88,7 +88,7 @@ public class MenuBar extends JPanel{
 		
 		// time label (Automatically updates)
 		final JLabel time = new JLabel();
-		Font font = new Font("Arial", Font.BOLD, 40);
+		Font font = new Font("Myriad Pro", Font.BOLD, 40);
 		time.setFont(font);
 		final DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 		ActionListener timerListener = new ActionListener()
@@ -143,7 +143,7 @@ public class MenuBar extends JPanel{
 
 		// Set destination text default and font
 		destinationText = new JLabel("Current Destination: 1 North Terrace, Adelaide, 5000, SA", JLabel.CENTER);
-		destinationText.setFont(new Font("Arial", Font.BOLD,16));
+		destinationText.setFont(new Font("Myriad Pro", Font.BOLD,16));
 		destinationText.setForeground(Color.WHITE);
 		
 		

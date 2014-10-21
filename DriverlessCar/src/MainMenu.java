@@ -54,7 +54,7 @@ public class MainMenu extends JPanel {
 		contentPane = panel;
 		setOpaque(true);
 		setBackground(Color.gray.brighter());
-		
+		UIManager.getCrossPlatformLookAndFeelClassName();
 		/*
 		 * ------------------------------------------------------------------------------
 		 * Set up JSplitPane for left(GPS) and right(Content)

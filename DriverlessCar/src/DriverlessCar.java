@@ -90,6 +90,7 @@ public class DriverlessCar {
 		frame.setSize(1301,901);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
 	}
 	
 	
