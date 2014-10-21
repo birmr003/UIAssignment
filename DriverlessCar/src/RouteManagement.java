@@ -32,10 +32,11 @@ public class RouteManagement extends JPanel {
 		content1.add(destinationLabel);
 		content1.add(destination);
 		content1.add(buttonSetDestination);
-		UIManager.getCrossPlatformLookAndFeelClassName();
+		
+		buttonListeners();
 
 	}
-	
+
 	private void buttonListeners(){
 		buttonSetDestination.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -44,4 +45,5 @@ public class RouteManagement extends JPanel {
 		});		
 	}
 	
+
 }

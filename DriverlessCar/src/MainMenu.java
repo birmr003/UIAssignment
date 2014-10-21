@@ -54,7 +54,7 @@ public class MainMenu extends JPanel {
 		contentPane = panel;
 		setOpaque(true);
 		setBackground(Color.gray.brighter());
-		UIManager.getCrossPlatformLookAndFeelClassName();
+		
 		/*
 		 * ------------------------------------------------------------------------------
 		 * Set up JSplitPane for left(GPS) and right(Content)
@@ -140,6 +140,7 @@ public class MainMenu extends JPanel {
 		buttonTopRight = new JButton("<html>" + "CURRENT JOBS<br><br>" + "3" + "</html>");
 		buttonTopRight.setPreferredSize(new Dimension(175,200));
 		buttonTopRight.setBackground(Color.decode("#16A79D"));
+		buttonTopRight.setOpaque(true);
 		r1_elem[0].add(buttonTopRight);
 		
 		
@@ -388,6 +389,7 @@ public class MainMenu extends JPanel {
 				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 				cardLayout.invalidateLayout(contentPane);
 				buttonFrontView.setBackground(Color.WHITE);
+				
 				cardLayout.show(rightSide, "Left Camera View");	
 			}
 		});
