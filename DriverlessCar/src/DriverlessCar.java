@@ -50,7 +50,11 @@ public class DriverlessCar {
 		JFrame frame = new JFrame("TEST MODE: Driverless Ambulance Interface v.1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+		try {
+		    UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+		 } catch (Exception e) {
+		            e.printStackTrace();
+		 }
 		
 		
 		
