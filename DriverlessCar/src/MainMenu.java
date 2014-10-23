@@ -8,6 +8,8 @@ import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import Helpers.Time;
+
 
 
 
@@ -50,51 +52,6 @@ public class MainMenu extends JPanel {
 	
 	private JButton buttonManualDriving;
 	
-
-	// Only way of getting around making the call dispatch label to count
-	// I really wanted to make the button text rather than overlay a label
-	 static class C
-	 {
-		 int seconds=0;
-	     int minutes=0;
-	     int hours=0;
-	     
-	     String seconds_text = String.format("%02d", seconds);
-	     String minutes_text = String.format("%02d", minutes);
-	     String hours_text = String.format("%02d", hours);
-	     
-    	 String s = "";
-
-	     C(){
-	    	 setTime();
-	     }
-	     
-	     private void add(){
-	    	 seconds++;
-	    	 if(seconds == 60){
-	    		 seconds = 0;
-	    		 minutes++;
-	    		 if(minutes ==60){
-	    			 minutes = 0;
-	    			 hours++;
-	    		 }
-	    	 }
-	    	 setTime();
-	     }
-	     
-	     private void setTime(){
-		     seconds_text = String.format("%02d", seconds);
-		     minutes_text = String.format("%02d", minutes);
-		     hours_text = String.format("%02d", hours);
-	    	 s = hours_text + ":" +minutes_text + ":" + seconds_text;
-	     }
-	     
-	     public String time(){
-	    	 add();
-	    	 return s;
-	     }
-	     
-	 }
 	
 	/**
 	 * Constructor
@@ -562,13 +519,13 @@ public class MainMenu extends JPanel {
 				
 				// random name
 				final String names[] = {"Michael", "Sue", "Anthony", "Doug", "Liam", 
-						 "Robyn", "Anne", "Sean"};
+						 "Robyn", "Anne", "Sean", "Ralph", "Steph", "Jesus"};
 		    	Random rand = new Random();
 		    	int n = rand.nextInt(names.length) + 0;
 				final String name = names[n];
 				
 				// Make a new timer task and time format
-				final C c = new C();
+				final Time c = new Time();
 				timerTask = new java.util.TimerTask() {
 				    @Override
 				    public void run() {
