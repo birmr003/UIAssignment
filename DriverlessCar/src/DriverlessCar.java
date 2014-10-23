@@ -52,6 +52,7 @@ public class DriverlessCar {
 		
 		try {
 		    UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+		    
 		 } catch (Exception e) {
 		            e.printStackTrace();
 		 }
@@ -91,7 +92,7 @@ public class DriverlessCar {
 		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationByPlatform(true);
-		frame.setSize(1301,901);
+		frame.setSize(1301,930);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		

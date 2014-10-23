@@ -10,7 +10,11 @@ import javax.swing.border.EmptyBorder;
 
 
 
-
+/**
+ * 
+ * @author Michael Bird
+ *
+ */
 public class MenuBar extends JPanel{
 
 	
