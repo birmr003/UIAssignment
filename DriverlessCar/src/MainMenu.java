@@ -1,5 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -40,10 +44,57 @@ public class MainMenu extends JPanel {
 	
 	private JButton buttonLogout;
 	
+	private JButton buttonCallDispatch;
+	
 	private JButton buttonEmergencyMode;
 	
 	private JButton buttonManualDriving;
+	
 
+	// Only way of getting around making the call dispatch label to count
+	// I really wanted to make the button text rather than overlay a label
+	 static class C
+	 {
+		 int seconds=0;
+	     int minutes=0;
+	     int hours=0;
+	     
+	     String seconds_text = String.format("%02d", seconds);
+	     String minutes_text = String.format("%02d", minutes);
+	     String hours_text = String.format("%02d", hours);
+	     
+    	 String s = "";
+
+	     C(){
+	    	 setTime();
+	     }
+	     
+	     private void add(){
+	    	 seconds++;
+	    	 if(seconds == 60){
+	    		 seconds = 0;
+	    		 minutes++;
+	    		 if(minutes ==60){
+	    			 minutes = 0;
+	    			 hours++;
+	    		 }
+	    	 }
+	    	 setTime();
+	     }
+	     
+	     private void setTime(){
+		     seconds_text = String.format("%02d", seconds);
+		     minutes_text = String.format("%02d", minutes);
+		     hours_text = String.format("%02d", hours);
+	    	 s = hours_text + ":" +minutes_text + ":" + seconds_text;
+	     }
+	     
+	     public String time(){
+	    	 add();
+	    	 return s;
+	     }
+	     
+	 }
 	
 	/**
 	 * Constructor
@@ -85,10 +136,6 @@ public class MainMenu extends JPanel {
 		// SET BUTTON LISTENERS
 		addListeners();
 		
-
-		
-		
-		
 		
 		/*
 		 * ------------------------------------------------------------------------------
@@ -97,9 +144,6 @@ public class MainMenu extends JPanel {
 		 */
 		add(topMenu,BorderLayout.PAGE_START);
 		add(j);
-		
-		
-		
 		
 	}
 	
@@ -291,31 +335,27 @@ public class MainMenu extends JPanel {
 	
 		
 		// Create / add buttons to row 4 panel
-
 		
-		/*
-		buttonEmergencyMode = new JButton("<html><p style='text-align:center'>EMERGENCY DRIVING<p>"
-				+ "<br><p style='text-align:center'>OFF<p><html>");
-		buttonEmergencyMode.setBackground(Color.RED);*/
-		
+		// emergency mode button
 		buttonEmergencyMode = new JButton("<html><p style='text-align:center'>EMERGENCY DRIVING"
 				+ " ---- OFF</p><html>");
 		buttonEmergencyMode.setBackground(Color.decode("#FF3333"));
+		buttonEmergencyMode.setPreferredSize(new Dimension(235, 45));
 		
+		// manual driving button
 		buttonManualDriving = new JButton("<html><p style='text-align:center'>MANUAL DRIVING"
 				+ " ---- OFF</p><html>");
 		buttonManualDriving.setBackground(Color.decode("#FF3333"));
+		buttonManualDriving.setPreferredSize(new Dimension(235, 45));
+		
+		// call dispatch button
+		buttonCallDispatch = new JButton("Call Dispatch");
+		buttonCallDispatch.setPreferredSize(new Dimension(180, 45));
 		
 		
-		{
-			
-			buttonEmergencyMode.setPreferredSize(new Dimension(325, 45));
-			
-			buttonManualDriving.setPreferredSize(new Dimension(325, 45));
-			r4.add(buttonEmergencyMode);
-			//r4.add(buttonLogout);
-			r4.add(buttonManualDriving);
-		}
+		r4.add(buttonEmergencyMode);
+		r4.add(buttonCallDispatch);
+		r4.add(buttonManualDriving);
 		
 		/*
 		 * ------------------------------------------------------------------------------
@@ -507,12 +547,65 @@ public class MainMenu extends JPanel {
 				setPainted(buttonManualDriving);
 			}
 		});
-	
+		
+		buttonCallDispatch.addActionListener(new ActionListener(){
+			
+			// Whether or not the timer should run
+			boolean active = true;
+			
+			// The timer and the task to be done
+			java.util.Timer myTimer = null;
+			java.util.TimerTask timerTask = null;
+			
+			public void actionPerformed(ActionEvent e){
+				setPainted(buttonCallDispatch);
+				
+				// random name
+				final String names[] = {"Michael", "Sue", "Anthony", "Doug", "Liam", 
+						 "Robyn", "Anne", "Sean"};
+		    	Random rand = new Random();
+		    	int n = rand.nextInt(names.length) + 0;
+				final String name = names[n];
+				
+				// Make a new timer task and time format
+				final C c = new C();
+				timerTask = new java.util.TimerTask() {
+				    @Override
+				    public void run() {
+				        buttonCallDispatch.setText("<html>" + c.time() + "<br>Talking to - " + name + "<html>");
+				        
+				    }
+				};
+				
+				// Execute timer
+				if(active == true){
+					myTimer = new java.util.Timer();
+					myTimer.schedule(timerTask, 0, 1* 1000);
+					active = false;
+				}
+				
+				// Reset to 'Call Dispatch'
+				if(!buttonCallDispatch.getText().equals("Call Dispatch")){
+					buttonCallDispatch.setText("Call Dispatch");
+					myTimer.cancel();
+					timerTask.cancel();
+					active = true;
+					
+				}
+				
+
+
+			}
+		});
+		
+
 		
 	
 	}
 	
-	
+	/**
+	 * 
+	 */
 	public void toggleManualDriving(){
 		/*
 		String off = "<html><p style='text-align:center'>MANUAL DRIVING<p>"
@@ -536,13 +629,11 @@ public class MainMenu extends JPanel {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 */
 	public void toggleEmergencyDriving(){
-		/*
-		String off = "<html><p style='text-align:center'>EMERGENCY DRIVING<p>"
-				+ "<br><p style='text-align:center'>OFF<p><html>"; 
-		String on = "<html><p style='text-align:center'>EMERGENCY DRIVING<p>"
-				+ "<br><p style='text-align:center'>ON<p><html>";*/
-		
 		String off = "<html><p style='text-align:center'>EMERGENCY DRIVING"
 				+ " ---- OFF</p><html>"; 
 		String on = "<html><p style='text-align:center'>EMERGENCY DRIVING"
@@ -562,9 +653,11 @@ public class MainMenu extends JPanel {
 	
 	
 	// Stops ugly borders around the button text from showing - yay
-	private void setPainted(JButton j){
-		j.setFocusPainted(false);
+	private void setPainted(JButton b){
+		b.setFocusPainted(false);
 	}
+	
+	
 	
 	
 	

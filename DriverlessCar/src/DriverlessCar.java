@@ -78,14 +78,10 @@ public class DriverlessCar {
 		loginScreenPanel = new LoginScreen(contentPane, this);
 		mainMenuPanel = new MainMenu(contentPane,this);
 		
-		
-		
-		
+				
 		// add each screen to the contentPane
 		contentPane.add(loginScreenPanel,  "Login");
 		contentPane.add(mainMenuPanel, "Main Menu");
-		
-		
 		
 		
 		// set up frame layout
