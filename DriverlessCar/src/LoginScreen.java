@@ -6,8 +6,8 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * Login Screen
- * @author 
+ * 
+ * @author Michael Bird
  *
  */
 public class LoginScreen extends JPanel {

@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 
- * @author 
+ * @author Michael Bird
  *
  */
 public class JobManagement extends JPanel {
