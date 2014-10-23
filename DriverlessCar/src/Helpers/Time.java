@@ -3,13 +3,13 @@ package Helpers;
 
 public final class Time
 {
-	int seconds=0;
-    int minutes=0;
-    int hours=0;
-    String seconds_text = String.format("%02d", seconds);
-    String minutes_text = String.format("%02d", minutes);
-    String hours_text = String.format("%02d", hours);
-	String s = "";
+	private int seconds=0;
+	private int minutes=0;
+	private int hours=0;
+	private String seconds_text = String.format("%02d", seconds);
+	private String minutes_text = String.format("%02d", minutes);
+	private String hours_text = String.format("%02d", hours);
+	private String s = "";
 
     public Time(){
 	   	 setTime();

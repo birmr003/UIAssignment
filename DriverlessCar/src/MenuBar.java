@@ -35,6 +35,7 @@ public class MenuBar extends JPanel{
 	 */
 	public JLabel emergencyModeStatus;
 	
+	
 	/**
 	 * Emeregency status boolean - true or false. Can be changed.
 	 */
@@ -92,7 +93,7 @@ public class MenuBar extends JPanel{
 		
 		// time label (Automatically updates)
 		final JLabel time = new JLabel();
-		Font font = new Font("Myriad Pro", Font.BOLD, 40);
+		Font font = new Font("Sans Serif", Font.BOLD, 40);
 		time.setFont(font);
 		final DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 		ActionListener timerListener = new ActionListener()
@@ -144,6 +145,8 @@ public class MenuBar extends JPanel{
 		emergencyModeStatus = new JLabel("Emergency Mode: NOT RUNNING", JLabel.CENTER);
 		emergencyModeStatus.setForeground(Color.WHITE);
 		
+		// end top
+		
 
 		// Set destination text default and font
 		destinationText = new JLabel("Current Destination: 1 North Terrace, Adelaide, 5000, SA", JLabel.CENTER);
@@ -173,6 +176,9 @@ public class MenuBar extends JPanel{
 	}
 	
 
+	public void setElapsedTime(){
+		
+	}
 	
 	/**
 	 * Sets the current destination

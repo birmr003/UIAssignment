@@ -1,4 +1,5 @@
 
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -11,7 +12,7 @@ public class VehicleMaintenance extends JPanel {
 	private JPanel contentPane;
 	
 	public VehicleMaintenance(JPanel content) {
-
+		add(new JLabel("Vehicle Maintenence"));
 	}
 	
 
