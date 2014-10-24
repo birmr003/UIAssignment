@@ -25,10 +25,18 @@ public class Settings extends JPanel {
 	private JLabel radioLabel;
 	private JLabel freqLabel;
 	private JLabel ventLabel;
+	private JLabel cdStatusLabel = new JLabel("Playing Funky Town...");
+	private String currentSongStr = "Funky Town";
 	private JButton ventButton = new JButton();
 	private JButton freqButton = new JButton();
+	private JButton radButton = new JButton();
+	private JButton cdButton = new JButton();
+	private JButton auxButton = new JButton();
 	private JTextArea frequency = new JTextArea();
-	
+	JPanel musicCards = new JPanel(new CardLayout());;
+	JPanel radioCard = new JPanel(new GridLayout(1,3));
+	JPanel cdCard = new JPanel(new GridLayout(2,1));
+	JPanel auxCard = new JPanel();
 	JSlider climateControl = new JSlider(JSlider.HORIZONTAL,
 			CLIMATE_MIN, CLIMATE_MAX, CLIMATE_INIT);
 	JSlider radVolControl = new JSlider(JSlider.HORIZONTAL,
@@ -80,10 +88,13 @@ public class Settings extends JPanel {
 			soundLabel = new JLabel("Sound");
 			soundLabel.setFont(new Font("Serif", Font.BOLD,36));
 
-			radioLabel = new JLabel("Radio Volume");
+			radioLabel = new JLabel("Volume");
 			radioLabel.setFont(new Font("Serif", Font.BOLD,16));
 			frequency.setText("107.10");
 			
+			musicCards.add(radioCard, "Radio controller");
+			musicCards.add(cdCard, "CD controller");
+			musicCards.add(auxCard, "AUX controller");
 			Hashtable volLabelTable = new Hashtable();
 			volLabelTable.put( new Integer( 0 ), new JLabel("0") );
 			volLabelTable.put( new Integer( 10 ), new JLabel("1") );
@@ -115,9 +126,112 @@ public class Settings extends JPanel {
 					}			
 				}
 			});
-			
+			radButton.setBackground(Color.decode("#92CD00"));
+			auxButton.setBackground(Color.decode("#FF3333"));
+			cdButton.setBackground(Color.decode("#FF3333"));
 			freqLabel = new JLabel("Frequency:");
 			freqLabel.setFont(new Font("Serif", Font.BOLD,16));
+			JPanel musicButtons = new JPanel(new GridLayout(1,3));
+			radButton.setText("RADIO");
+			radButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+	
+					radButton.setBackground(Color.decode("#92CD00"));
+					auxButton.setBackground(Color.decode("#FF3333"));
+					cdButton.setBackground(Color.decode("#FF3333"));
+				    CardLayout cl = (CardLayout)(musicCards.getLayout());
+				    cl.show(musicCards, "Radio controller");
+				}
+			});
+			musicButtons.add(radButton);
+			auxButton.setText("AUX");
+			auxButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+	
+					auxButton.setBackground(Color.decode("#92CD00"));
+					radButton.setBackground(Color.decode("#FF3333"));
+					cdButton.setBackground(Color.decode("#FF3333"));
+					
+				    CardLayout cl = (CardLayout)(musicCards.getLayout());
+				    cl.show(musicCards, "AUX controller");
+				}
+			});
+			musicButtons.add(auxButton);
+			cdButton.setText("CD");
+			cdButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+	
+					cdButton.setBackground(Color.decode("#92CD00"));
+					auxButton.setBackground(Color.decode("#FF3333"));
+					radButton.setBackground(Color.decode("#FF3333"));
+				    CardLayout cl = (CardLayout)(musicCards.getLayout());
+				    cl.show(musicCards, "CD controller");
+				}
+			});
+			musicButtons.add(cdButton);
+			
+			//Setting up cards
+			radioCard.add(freqLabel);
+			radioCard.add(frequency);
+			radioCard.add(freqButton);
+			
+			auxCard.add(new JLabel("AUX Connected..."));
+			
+			JPanel cdButtons = new JPanel(new GridLayout(1,6));
+			
+			JButton playBtn = new JButton("Play");
+			playBtn.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+					cdStatusLabel.setText("Playing " + currentSongStr + "...");
+				}
+			});
+			cdButtons.add(playBtn);
+			
+			JButton pauseBtn = new JButton("Pause");
+			pauseBtn.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+					cdStatusLabel.setText(currentSongStr + " Paused");
+				}
+			});
+			cdButtons.add(pauseBtn);
+			
+			JButton stopBtn = new JButton("Stop");
+			stopBtn.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+					cdStatusLabel.setText(currentSongStr + " Stopped");
+				}
+			});
+			cdButtons.add(stopBtn);
+			
+			JButton prevBtn = new JButton("PREV");
+			prevBtn.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+					if(currentSongStr.equals("Funky Town")){
+						currentSongStr = "Bohemian Rhapsody";
+					}else{
+						currentSongStr = "Funky Town";
+					}
+					cdStatusLabel.setText("Playing " + currentSongStr + "...");
+				}
+			});
+			cdButtons.add(prevBtn);
+			
+			JButton nextBtn = new JButton("next");
+			nextBtn.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){				
+					if(currentSongStr.equals("Funky Town")){
+						currentSongStr = "Bohemian Rhapsody";
+					}else{
+						currentSongStr = "Funky Town";
+					}
+					cdStatusLabel.setText("Playing " + currentSongStr + "...");
+				}
+			});
+			cdButtons.add(nextBtn);
+			cdButtons.add(new JButton("Eject"));
+			
+			cdCard.add(cdButtons);
+			cdCard.add(cdStatusLabel);
 			
 			//Adding content
 			theContent.add(new JLabel("Settings"));
@@ -128,9 +242,8 @@ public class Settings extends JPanel {
 			theContent.add(soundLabel);
 			theContent.add(radioLabel);
 			theContent.add(radVolControl);	
-			theContent.add(freqLabel);
-			theContent.add(frequency);
-			theContent.add(freqButton);
+			theContent.add(musicButtons);
+			theContent.add(musicCards);
 			add(theContent);
 			
 	}
