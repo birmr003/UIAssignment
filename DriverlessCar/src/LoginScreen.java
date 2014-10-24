@@ -6,8 +6,8 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * Login Screen
- * @author 
+ * 
+ * @author Michael Bird
  *
  */
 public class LoginScreen extends JPanel {
@@ -66,12 +66,12 @@ public class LoginScreen extends JPanel {
 		
 		// Fonts/Text Color
 		
-		userLabel.setFont(new Font("Arial", Font.BOLD,48));
-		userField.setFont(new Font("Arial",Font.PLAIN, 48));
+		userLabel.setFont(new Font("Sans Serif", Font.BOLD,48));
+		userField.setFont(new Font("Sans Serif",Font.PLAIN, 48));
 		userField.setForeground(Color.BLUE);
 		
-		passwordLabel.setFont(new Font("Arial", Font.BOLD,48));
-		passwordField.setFont(new Font("Arial",Font.PLAIN, 48));
+		passwordLabel.setFont(new Font("Sans Serif", Font.BOLD,48));
+		passwordField.setFont(new Font("Sans Serif",Font.PLAIN, 48));
 		passwordField.setForeground(Color.BLUE);
 		
 
@@ -84,7 +84,7 @@ public class LoginScreen extends JPanel {
 		JPanel title = new JPanel(new GridLayout(2,0));
 		title.setBackground(Color.gray.brighter());
 		JLabel t2 = new JLabel("(TEST DEPLOYMENT: Username=test, Password=test)", JLabel.CENTER);
-		
+		t2.setFont(new Font("Sans Serif",Font.BOLD, 14));
 		title.add(new JLabel("Please enter your credentials.", JLabel.CENTER));
 		title.add(t2);
 		

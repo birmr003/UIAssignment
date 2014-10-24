@@ -4,13 +4,19 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Helpers.Time;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
 
-
+/**
+ * 
+ * @author Michael Bird
+ *
+ */
 public class MenuBar extends JPanel{
 
 	
@@ -31,6 +37,7 @@ public class MenuBar extends JPanel{
 	 */
 	public JLabel emergencyModeStatus;
 	
+	
 	/**
 	 * Emeregency status boolean - true or false. Can be changed.
 	 */
@@ -40,6 +47,14 @@ public class MenuBar extends JPanel{
 	 * Current driving mode string
 	 */
 	private String currentDrivingMode = "Automatic";
+	
+	
+	private JLabel timeText = new JLabel("");
+	
+	private java.util.Timer myTimer;
+	private java.util.TimerTask timerTask;
+	
+	
 	
 	
 	
@@ -88,7 +103,7 @@ public class MenuBar extends JPanel{
 		
 		// time label (Automatically updates)
 		final JLabel time = new JLabel();
-		Font font = new Font("Arial", Font.BOLD, 40);
+		Font font = new Font("Sans Serif", Font.BOLD, 40);
 		time.setFont(font);
 		final DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 		ActionListener timerListener = new ActionListener()
@@ -140,17 +155,56 @@ public class MenuBar extends JPanel{
 		emergencyModeStatus = new JLabel("Emergency Mode: NOT RUNNING", JLabel.CENTER);
 		emergencyModeStatus.setForeground(Color.WHITE);
 		
-
+		// end top
+		
+		
 		// Set destination text default and font
 		destinationText = new JLabel("Current Destination: 1 North Terrace, Adelaide, 5000, SA", JLabel.CENTER);
-		destinationText.setFont(new Font("Arial", Font.BOLD,16));
+		destinationText.setFont(new Font("Sans Serif Pro", Font.BOLD,16));
 		destinationText.setForeground(Color.WHITE);
 		
 		
 		// Add components to the top panel of the left side
-		topLeft.add(drivingMode);
-		topLeft.add(emergencyModeStatus);
+		//topLeft.add(drivingMode);
+		//topLeft.add(emergencyModeStatus);
 		topLeft.setBackground(Color.decode("#FF5A09"));
+		
+		
+		
+		
+		
+		
+		//TODO::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		
+		final Time c = new Time();
+		timerTask = new java.util.TimerTask() {
+		    @Override
+		    public void run() {
+		        timeText.setText("<html> <p style='text-align:center'>Duration Driving: " + c.time() + "</p><html>");
+		        
+		    }
+		};
+		
+		myTimer = new java.util.Timer();
+		myTimer.schedule(timerTask, 0, 1* 1000);
+		
+		topLeft.add(timeText, BorderLayout.CENTER);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// TODO::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		
+		
+		
+		
+		
+		
 		
 		
 		// Add components to the left side
@@ -169,6 +223,9 @@ public class MenuBar extends JPanel{
 	}
 	
 
+	public void setElapsedTime(){
+		
+	}
 	
 	/**
 	 * Sets the current destination

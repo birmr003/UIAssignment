@@ -10,11 +10,12 @@ import javax.swing.border.EmptyBorder;
  * @author Michael Bird
  *
  */
-public class VehicleMaintenance extends JPanel {
+public class Settings extends JPanel {
+	
 	private JPanel contentPane;
 	
-	public VehicleMaintenance(JPanel content) {
-		add(new JLabel("Vehicle Maintenence"));
+	public Settings(JPanel content) {
+			add(new JLabel("Settings"));
 	}
 	
 

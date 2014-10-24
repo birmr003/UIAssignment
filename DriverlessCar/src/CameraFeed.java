@@ -1,5 +1,7 @@
+
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -17,7 +19,7 @@ public class CameraFeed extends JPanel {
 	private JPanel contentPane;
 	
 	// All of the viable camera feeds we could show
-	private String screens[] = {
+	final private String screens[] = {
 			"frontview",
 			"rearview",
 			"leftview",
@@ -34,23 +36,47 @@ public class CameraFeed extends JPanel {
 
 		String url = "";
 		boolean contains = false;
+		String text = "";
+		JLabel viewText = new JLabel();
+		viewText.setFont(new Font("Sans Serif", Font.BOLD, 30));
+		
 		
 		for(String i : screens){
 			if(i.equals(view)){
-				url += "Images/" + view + ".jpg";
+
+				url += "Images/" + view + "_large.jpg";
 				contains = true;
+				
+				if(i == screens[0]){
+					text = "Front Camera View";
+				}
+				if(i == screens[1]){
+					text = "Rear Camera View";
+				}
+				if(i == screens[2]){
+					text = "Left Camera View";
+				}
+				if(i == screens[3]){
+					text = "Right Camera View";
+				}
 			}
 		}
 		
+		viewText.setText("Viewing: " + text);
+		
 		if(contains == true){
+			
 			ImageIcon viewImage = new ImageIcon(CameraFeed.class.getResource(url));
+	
+
 			
 			
 			// TODO::set the size of the image to a reasonable size. Not necessarily the size of the panel
 			// because different of aspect ratios etc. 
+			JLabel l = new JLabel(viewImage);
 			
-			
-			add(new JLabel(viewImage));
+			add(viewText);
+			add(l);
 		}
 		else{
 			add(new JLabel("Invalid Image, Please add image to the Camera Feed class"));

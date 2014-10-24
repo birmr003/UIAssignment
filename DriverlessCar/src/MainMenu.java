@@ -1,15 +1,21 @@
+
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import Helpers.Time;
 
 
 
 /**
  * 
- * @author 
+ * @author Michael Bird
  *
  */
 public class MainMenu extends JPanel {
@@ -20,11 +26,11 @@ public class MainMenu extends JPanel {
 	
 	private JPanel rightSide;
 	
-	private JButton buttonTopLeft;
+	private JButton buttonRouteManagement;
 	
 	private JButton buttonFrontView;
 	
-	private JButton buttonTopRight;
+	private JButton buttonJobManagement;
 	
 	private JButton buttonLeftView;
 	
@@ -32,18 +38,26 @@ public class MainMenu extends JPanel {
 	
 	private JButton buttonRightView;
 	
-	private JButton buttonBottomRight;
+	private JButton buttonSupplyManagement;
 	
 	private JButton buttonRearView;
 	
-	private JButton buttonBottomLeft;
+	private JButton buttonEmergencyStop;
 	
 	private JButton buttonLogout;
+	
+	private JButton buttonCallDispatch;
 	
 	private JButton buttonEmergencyMode;
 	
 	private JButton buttonManualDriving;
-
+	
+	private JButton buttonVehicleMaintenence;
+	
+	private JButton buttonSettings;
+	
+	private Font mainButtonFont = new Font("Sans Serif",Font.BOLD,16);
+	private Font normalButtonFont = new Font("Sans Serif", Font.BOLD, 12);
 	
 	/**
 	 * Constructor
@@ -62,8 +76,11 @@ public class MainMenu extends JPanel {
 		 */
 
 		JSplitPane j = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		j.setPreferredSize(new Dimension(1270,730));
+		j.setPreferredSize(new Dimension(1270,760));
 		j.setEnabled(false);
+		
+		// Add menu bar
+		topMenu = new MenuBar(contentPane,mainLayout);
 		
 		
 		// Left side
@@ -82,11 +99,6 @@ public class MainMenu extends JPanel {
 		// SET BUTTON LISTENERS
 		addListeners();
 		
-
-		// Add menu bar
-		topMenu = new MenuBar(contentPane,mainLayout);
-		
-		
 		
 		/*
 		 * ------------------------------------------------------------------------------
@@ -95,9 +107,6 @@ public class MainMenu extends JPanel {
 		 */
 		add(topMenu,BorderLayout.PAGE_START);
 		add(j);
-		
-		
-		
 		
 	}
 	
@@ -135,10 +144,11 @@ public class MainMenu extends JPanel {
 		
 		// Top Right Button
 		r1_elem[0].setPreferredSize(new Dimension(175, 200));
-		buttonTopRight = new JButton("<html>" + "CURRENT JOBS<br><br>" + "3" + "</html>");
-		buttonTopRight.setPreferredSize(new Dimension(175,200));
-		buttonTopRight.setBackground(Color.decode("#16A79D"));
-		r1_elem[0].add(buttonTopRight);
+		buttonJobManagement = new JButton("<html>" + "<p>CURRENT JOBS<p><br><br>" + "<p style='text-align:center'>3<p>" + "</html>");
+		buttonJobManagement.setPreferredSize(new Dimension(175,200));
+		buttonJobManagement.setBackground(Color.decode("#FFD464"));
+		buttonJobManagement.setFont(mainButtonFont);
+		r1_elem[0].add(buttonJobManagement);
 		
 		
 		
@@ -154,11 +164,12 @@ public class MainMenu extends JPanel {
 		
 
 		// Top Left Button
-		r1_elem[2].setPreferredSize(new Dimension(175, 200));
-		buttonTopLeft = new JButton("<html>" + "ADD OR CHANGE ROUTE<br>" + "</html>");
-		buttonTopLeft.setBackground(Color.decode("#CF4858"));
-		buttonTopLeft.setPreferredSize(new Dimension(174,200));
-		r1_elem[2].add(buttonTopLeft);
+		r1_elem[2].setPreferredSize(new Dimension(174, 200));
+		buttonRouteManagement = new JButton("<html>" + "<p style='text-align:center'>ADD OR</p><br> CHANGE ROUTE</p>" + "</html>");
+		buttonRouteManagement.setBackground(Color.decode("#39B1C6"));
+		buttonRouteManagement.setPreferredSize(new Dimension(174,200));
+		buttonRouteManagement.setFont(mainButtonFont);
+		r1_elem[2].add(buttonRouteManagement);
 		
 		
 		
@@ -244,10 +255,12 @@ public class MainMenu extends JPanel {
 		
 		// Right Side button
 		r3_elem[0].setPreferredSize(new Dimension(175, 200));
-		buttonBottomRight = new JButton("PARK VEHICLE");
-		buttonBottomRight.setPreferredSize(new Dimension(175,200));
-		buttonBottomRight.setBackground(Color.decode("#80628B"));
-		r3_elem[0].add(buttonBottomRight);
+		buttonSupplyManagement = new JButton("<html><p  style='text-align:center'>SUPPLY</p>"
+				+ "<br><pstyle='text-align:center'>MANAGEMENT</p></html>");
+		buttonSupplyManagement.setPreferredSize(new Dimension(175,200));
+		buttonSupplyManagement.setBackground(Color.decode("#EC3F8C"));
+		buttonSupplyManagement.setFont(mainButtonFont);
+		r3_elem[0].add(buttonSupplyManagement);
 		
 
 		// Rear View Camera
@@ -262,10 +275,31 @@ public class MainMenu extends JPanel {
 		
 		// Left side button
 		r3_elem[2].setPreferredSize(new Dimension(175, 200));
-		buttonBottomLeft = new JButton("EMERGENCY STOP");
-		buttonBottomLeft.setPreferredSize(new Dimension(175,200));
-		buttonBottomLeft.setBackground(Color.decode("#F4AC42"));
-		r3_elem[2].add(buttonBottomLeft);
+		/*
+		JPanel left_box = new JPanel();
+		left_box.setLayout(new BorderLayout(0,0));
+		left_box.setPreferredSize(new Dimension(175,200));
+
+		
+		JButton test = new JButton("Park Vehicle");
+		test.setPreferredSize(new Dimension(175,100));
+		
+		buttonEmergencyStop = new JButton("EMERGENCY STOP");
+		buttonEmergencyStop.setPreferredSize(new Dimension(175,100));
+		buttonEmergencyStop.setBackground(Color.decode("#F4AC42"));
+		
+		left_box.add(test, BorderLayout.NORTH);
+		left_box.add(buttonEmergencyStop, BorderLayout.SOUTH);*/
+		
+		
+		buttonEmergencyStop = new JButton("<html><p  style='text-align:center'>EMERGENCY</p>"
+				+ "<br><p style='text-align:center'>STOP</p><html>");
+		buttonEmergencyStop.setPreferredSize(new Dimension(175,200));
+		buttonEmergencyStop.setBackground(Color.decode("#0FB493"));
+		buttonEmergencyStop.setFont(mainButtonFont);
+		r3_elem[2].add(buttonEmergencyStop);
+		
+		
 		
 		
 		// Add elements to row 3
@@ -288,21 +322,70 @@ public class MainMenu extends JPanel {
 	
 		
 		// Create / add buttons to row 4 panel
+		
+		// emergency mode button
+		buttonEmergencyMode = new JButton("<html><p style='text-align:center'>EMERGENCY DRIVING"
+				+ " ---- OFF</p><html>");
+		buttonEmergencyMode.setBackground(Color.decode("#FF3333"));
+		buttonEmergencyMode.setPreferredSize(new Dimension(235, 45));
+		buttonEmergencyMode.setFont(normalButtonFont);
+
+		
+		// manual driving button
+		buttonManualDriving = new JButton("<html><p style='text-align:center'>MANUAL DRIVING"
+				+ " ---- OFF</p><html>");
+		buttonManualDriving.setBackground(Color.decode("#FF3333"));
+		buttonManualDriving.setPreferredSize(new Dimension(235, 45));
+		buttonManualDriving.setFont(normalButtonFont);
+		
+		// call dispatch button
+		buttonCallDispatch = new JButton("Call Dispatch");
+		buttonCallDispatch.setPreferredSize(new Dimension(180, 45));
+		buttonCallDispatch.setForeground(Color.decode("#FFFFFF"));
+		buttonCallDispatch.setBackground(Color.decode("#003366"));
+		buttonCallDispatch.setFont(normalButtonFont);
+		
+		r4.add(buttonEmergencyMode);
+		r4.add(buttonCallDispatch);
+		r4.add(buttonManualDriving);
+		
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Left Side - Bottom Row - Row 5
+		 * 
+		 * Settings/login row
+		 * ------------------------------------------------------------------------------
+		 */
+		// New panel for row 4
+		JPanel rSpace1 = new JPanel(new FlowLayout(0,0,0));
+		rSpace1.setPreferredSize(new Dimension(650, 5));
+		rSpace1.setBackground(Color.BLACK);
+		
+		JPanel rSpace2 = new JPanel(new FlowLayout(0,0,0));
+		rSpace2.setPreferredSize(new Dimension(650, 5));
+		rSpace2.setBackground(Color.BLACK);
+		
+		JPanel r5 = new JPanel(new FlowLayout(0,0,0));
+		
+		
+		// Create / add buttons to row 4 panel
 		buttonLogout = new JButton("LOGOUT");
 		buttonLogout.setForeground(Color.decode("#FFFFFF"));
 		buttonLogout.setBackground(Color.decode("#003366"));
-		buttonEmergencyMode = new JButton("TOGGLE EMERGENCY MODE");
-		buttonManualDriving = new JButton("TOGGLE MANUAL DRIVING");
-		{
-			Dimension size = new Dimension(650/3, 77);
-			buttonEmergencyMode.setPreferredSize(size);
-			buttonLogout.setPreferredSize(size);
-			buttonManualDriving.setPreferredSize(size);
-			r4.add(buttonEmergencyMode);
-			r4.add(buttonLogout);
-			r4.add(buttonManualDriving);
-		}
+		buttonLogout.setPreferredSize(new Dimension(300, 50));
+		buttonLogout.setFont(normalButtonFont);
 		
+		buttonSettings = new JButton("Settings");
+		buttonSettings.setPreferredSize(new Dimension(175, 50));
+		buttonSettings.setFont(normalButtonFont);
+		
+		buttonVehicleMaintenence = new JButton("Maintenence");
+		buttonVehicleMaintenence.setPreferredSize(new Dimension(175, 50));
+		buttonVehicleMaintenence.setFont(normalButtonFont);
+		
+		r5.add(buttonSettings);
+		r5.add(buttonLogout);
+		r5.add(buttonVehicleMaintenence);
 		
 		
 		/*
@@ -310,11 +393,13 @@ public class MainMenu extends JPanel {
 		 * Add each row to the left side panel and return
 		 * ------------------------------------------------------------------------------
 		 */
+		leftSide.add(r4);
+		leftSide.add(rSpace1);
 		leftSide.add(r1);
 		leftSide.add(r2);
 		leftSide.add(r3);
-		leftSide.add(r4);
-		
+		leftSide.add(rSpace2);
+		leftSide.add(r5);
 		
 		// return the completed panel
 		return leftSide;
@@ -336,8 +421,13 @@ public class MainMenu extends JPanel {
 		rightSide.setMinimumSize(new Dimension(520,720));
 		
 		
-		rightSide.add(new RouteManagement(rightSide),  "Add Route");
+		rightSide.add(new RouteManagement(rightSide, topMenu),  "Add Route");
 		rightSide.add(new JobManagement(rightSide),  "Job Management");
+		rightSide.add(new SupplyManagement(rightSide),  "Supply Management");
+		rightSide.add(new VehicleMaintenance(rightSide),  "Vehicle Maintenance");
+		rightSide.add(new Settings(rightSide),  "Settings");
+		rightSide.add(new ManualDrivingControls(rightSide),  "Manual Driving");
+		
 		
 		// add camera feeds (USE THE EXACT IMAGE NAME)
 		rightSide.add(new CameraFeed(rightSide, "frontview"),  "Front Camera View");
@@ -355,11 +445,30 @@ public class MainMenu extends JPanel {
 	public void addListeners(){
 
 		
-		buttonTopRight.addActionListener(new ActionListener(){
+		buttonJobManagement.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 				cardLayout.invalidateLayout(contentPane);
 				cardLayout.show(rightSide, "Job Management");	
+				setPainted(buttonJobManagement);
+			}
+		});
+		
+		buttonVehicleMaintenence.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				cardLayout.show(rightSide, "Vehicle Maintenance");	
+				setPainted(buttonVehicleMaintenence);
+			}
+		});
+		
+		buttonSettings.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				cardLayout.show(rightSide, "Settings");	
+				setPainted(buttonSettings);
 			}
 		});
 		
@@ -386,6 +495,7 @@ public class MainMenu extends JPanel {
 				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 				cardLayout.invalidateLayout(contentPane);
 				buttonFrontView.setBackground(Color.WHITE);
+				
 				cardLayout.show(rightSide, "Left Camera View");	
 			}
 		});
@@ -396,32 +506,41 @@ public class MainMenu extends JPanel {
 				cardLayout.invalidateLayout(contentPane);
 				buttonFrontView.setBackground(Color.WHITE);
 				cardLayout.show(rightSide, "Right Camera View");	
+				setPainted(buttonRightView);
 			}
 		});
 		
 		
 		
-		buttonBottomLeft.addActionListener(new ActionListener(){
+		buttonEmergencyStop.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null, "buttonBottomLeft");
+				JOptionPane.showMessageDialog(null, "Executing Emergency Stop");
+				topMenu.setDestinationText("---Vehicle Stopped---");
+				setPainted(buttonEmergencyStop);
 			}
 		});
 		
 		
-		
-		buttonBottomRight.addActionListener(new ActionListener(){
+		// Supply management
+		buttonSupplyManagement.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null, "buttonBottomRight");	
+				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				cardLayout.show(rightSide, "Supply Management");	
+				
+				//JOptionPane.showMessageDialog(null, "Parking Vehicle.");
+				setPainted(buttonSupplyManagement);
 			}
 		});
 		
 		
 		
-		buttonTopLeft.addActionListener(new ActionListener(){
+		buttonRouteManagement.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 				cardLayout.invalidateLayout(contentPane);
 				cardLayout.show(rightSide, "Add Route");	
+				setPainted(buttonRouteManagement);
 			}
 		});
 	
@@ -430,8 +549,11 @@ public class MainMenu extends JPanel {
 		
 		buttonLogout.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				setPainted(buttonLogout);
 				int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout?",  JOptionPane.YES_NO_OPTION);
 				if(selection == JOptionPane.YES_OPTION){
+					
+					
 					
 					// set default frame back to home screen
 					CardLayout cardLayout = (CardLayout) rightSide.getLayout();
@@ -450,21 +572,147 @@ public class MainMenu extends JPanel {
 		
 		buttonEmergencyMode.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				topMenu.changeEmergencyMode();
+				toggleEmergencyDriving();
+				//topMenu.changeEmergencyMode();
+				setPainted(buttonEmergencyMode);
 			}
 		});
-		
 		
 
 		buttonManualDriving.addActionListener(new ActionListener(){
+			boolean active = false;
 			public void actionPerformed(ActionEvent e){
-				topMenu.changeDrivingMode();
+				toggleManualDriving();
+				active = active == true ? false : true;
+				
+				
+				if(active == true){
+					CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+					cardLayout.invalidateLayout(contentPane);
+					cardLayout.show(rightSide, "Manual Driving");
+				}
+				else{
+					CardLayout cardLayout = (CardLayout) rightSide.getLayout();
+					cardLayout.invalidateLayout(contentPane);
+					cardLayout.show(rightSide, "Add Route");	
+				}
+
+				
+				setPainted(buttonManualDriving);
+				
 			}
 		});
-	
+		
+		buttonCallDispatch.addActionListener(new ActionListener(){
+			
+			// Whether or not the timer should run
+			boolean active = true;
+			
+			// The timer and the task to be done
+			java.util.Timer myTimer = null;
+			java.util.TimerTask timerTask = null;
+			
+			public void actionPerformed(ActionEvent e){
+				setPainted(buttonCallDispatch);
+				
+				// random name
+				final String names[] = {"Michael", "Sue", "Anthony", "Doug", "Liam", 
+						 "Robyn", "Anne", "Sean", "Ralph", "Steph", "Jesus"};
+		    	Random rand = new Random();
+		    	int n = rand.nextInt(names.length) + 0;
+				final String name = names[n];
+				
+				// Make a new timer task and time format
+				final Time c = new Time();
+				timerTask = new java.util.TimerTask() {
+				    @Override
+				    public void run() {
+				        buttonCallDispatch.setText("<html>" + c.time() + "<br>Talking to - " + name + "<html>");
+				        
+				    }
+				};
+				
+				// Execute timer
+				if(active == true){
+					myTimer = new java.util.Timer();
+					myTimer.schedule(timerTask, 0, 1* 1000);
+					active = false;
+				}
+				
+				// Reset to 'Call Dispatch'
+				if(!buttonCallDispatch.getText().equals("Call Dispatch")){
+					buttonCallDispatch.setText("Call Dispatch");
+					myTimer.cancel();
+					timerTask.cancel();
+					active = true;
+					
+				}
+				
+
+
+			}
+		});
+		
+
 		
 	
 	}
+	
+	/**
+	 * 
+	 */
+	public void toggleManualDriving(){
+		/*
+		String off = "<html><p style='text-align:center'>MANUAL DRIVING<p>"
+				+ "<br><p style='text-align:center'>OFF<p><html>"; 
+		String on = "<html><p style='text-align:center'>MANUAL DRIVING<p>"
+				+ "<br><p style='text-align:center'>ON<p><html>";*/
+		
+		String off = "<html><p style='text-align:center'>MANUAL DRIVING"
+				+ " ---- OFF</p><html>"; 
+		String on = "<html><p style='text-align:center'>MANUAL DRIVING"
+				+ " ---- ON</p><html>";
+		
+		
+		if(buttonManualDriving.getText().equals(off)){
+			buttonManualDriving.setText(on);
+			buttonManualDriving.setBackground(Color.decode("#92CD00"));
+		}
+		else{
+			buttonManualDriving.setText(off); 
+			buttonManualDriving.setBackground(Color.decode("#FF3333"));
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void toggleEmergencyDriving(){
+		String off = "<html><p style='text-align:center'>EMERGENCY DRIVING"
+				+ " ---- OFF</p><html>"; 
+		String on = "<html><p style='text-align:center'>EMERGENCY DRIVING"
+				+ " ---- ON</p><html>";
+	
+		if(buttonEmergencyMode.getText().equals(off)){
+			buttonEmergencyMode.setText(on);
+			buttonEmergencyMode.setBackground(Color.decode("#92CD00"));
+		}
+		else{
+			buttonEmergencyMode.setText(off); 
+			buttonEmergencyMode.setBackground(Color.decode("#FF3333"));
+		}
+			
+		
+	}
+	
+	
+	// Stops ugly borders around the button text from showing - yay
+	private void setPainted(JButton b){
+		b.setFocusPainted(false);
+	}
+	
+	
 	
 	
 	

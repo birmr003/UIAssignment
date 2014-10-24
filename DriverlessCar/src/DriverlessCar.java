@@ -50,7 +50,12 @@ public class DriverlessCar {
 		JFrame frame = new JFrame("TEST MODE: Driverless Ambulance Interface v.1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+		try {
+		    UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+		    
+		 } catch (Exception e) {
+		            e.printStackTrace();
+		 }
 		
 		
 		
@@ -73,29 +78,27 @@ public class DriverlessCar {
 		loginScreenPanel = new LoginScreen(contentPane, this);
 		mainMenuPanel = new MainMenu(contentPane,this);
 		
-		
-		
-		
+				
 		// add each screen to the contentPane
 		contentPane.add(loginScreenPanel,  "Login");
 		contentPane.add(mainMenuPanel, "Main Menu");
-		
-		
 		
 		
 		// set up frame layout
 		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationByPlatform(true);
-		frame.setSize(1301,901);
+		frame.setSize(1301,930);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
 	}
 	
 	
 	
 	// main method
 	public static void main(String[] args) {	
+
 	SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
 				new DriverlessCar().GUIdisplay();
