@@ -42,7 +42,7 @@ public class DriverlessCar {
 	private MainMenu mainMenuPanel;
 	
 	// menu bar - ie. date, time and a home button
-	private JPanel statusBar;
+	private MenuBar statusBar;
 	
 	private void GUIdisplay(){
 		
@@ -50,60 +50,55 @@ public class DriverlessCar {
 		JFrame frame = new JFrame("TEST MODE: Driverless Ambulance Interface v.1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		try {
+		    UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+		    
+		 } catch (Exception e) {
+		            e.printStackTrace();
+		 }
 		
+		
+		
+		/* A cardlayout allows as to add 'Cards' to the screen.
+		   This is a nifty layout as we can add the main menu/s + login
+		   screens and switch between them seemlessly without creating
+		   another window*/
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		contentPane.setLayout(new CardLayout());
 		
 		
 		
-		// screen initializations
+		/*
+		 * These are the main screens that are used so far.
+		 * This does not include screens such as 'Route Management'That are navigated through the main menu. 
+		 * For something like that, the screen would have its own subset of screens that it can get to
+		 * This gives us versatility by adding a class for each screen.
+		 */
 		loginScreenPanel = new LoginScreen(contentPane, this);
 		mainMenuPanel = new MainMenu(contentPane,this);
 		
+				
 		// add each screen to the contentPane
 		contentPane.add(loginScreenPanel,  "Login");
 		contentPane.add(mainMenuPanel, "Main Menu");
 		
 		
-		
-		// Create a time label that automatically updates
-		final JLabel timeLabel = new JLabel();
-		Font font = new Font("Arial", Font.BOLD, 24);
-		timeLabel.setFont(font);
-		final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-		ActionListener timerListener = new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e){
-				Date date = new Date();
-				String time = timeFormat.format(date);
-				timeLabel.setText(time);
-			}
-		};
-		Timer timer = new Timer(1000, timerListener);
-		timer.setInitialDelay(0);
-		timer.start();
-		
-		
-		// create status(menu) bar and the time and any other icons to it
-		statusBar = new JPanel();
-		statusBar.add(timeLabel,BorderLayout.CENTER);
-
-		
-		
-		frame.getContentPane().add(statusBar, BorderLayout.PAGE_START);
+		// set up frame layout
 		frame.getContentPane().add(contentPane, BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationByPlatform(true);
-		frame.setSize(900,900);
+		frame.setSize(1301,930);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
 	}
 	
 	
 	
 	// main method
 	public static void main(String[] args) {	
+
 	SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
 				new DriverlessCar().GUIdisplay();
