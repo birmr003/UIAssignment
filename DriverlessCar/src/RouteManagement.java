@@ -22,6 +22,7 @@ public class RouteManagement extends JPanel {
 	
 	public RouteManagement(JPanel content, MenuBar m) {
 		
+		// test - set up git on my mac
 		JPanel content1 = new JPanel(new GridLayout(6,1));
 		content1.setMinimumSize(new Dimension(520,720));
 		
