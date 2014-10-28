@@ -20,6 +20,7 @@ public class Settings extends JPanel {
 	static final int RADVOL_MIN = 0;
 	static final int RADVOL_MAX = 110;
 	static final int RADVOL_INIT = 55;    //initial
+	private JLabel settings = new JLabel("Settings");	
 	private JLabel climateLabel;
 	private JLabel soundLabel;
 	private JLabel radioLabel;
@@ -45,13 +46,13 @@ public class Settings extends JPanel {
 	//private boolean isVentOn = false;
 	
 	public Settings(JPanel content) {
-		JPanel theContent = new JPanel(new GridLayout(12,1));
+		JPanel theContent = new JPanel(new GridLayout(12,1,0,5));
 			
 			
 			
 			//Climate control with slider
 			climateLabel = new JLabel("Climate");
-			climateLabel.setFont(new Font("Serif", Font.BOLD,36));
+			climateLabel.setFont(new Font("Serif", Font.BOLD,30));
 			climateControl.setMinorTickSpacing(1);
 			
 			//Create the label table
@@ -63,7 +64,7 @@ public class Settings extends JPanel {
 			
 			//Fan
 			ventLabel = new JLabel("Ventilation Fan");
-			ventLabel.setFont(new Font("Serif", Font.BOLD,16));
+			ventLabel.setFont(new Font("Serif", Font.BOLD,30));
 			ventButton.setText("Off");
 			ventButton.setBackground(Color.decode("#FF3333"));
 			ventButton.addActionListener(new ActionListener(){
@@ -86,7 +87,7 @@ public class Settings extends JPanel {
 			
 			//Sounds controls with slider
 			soundLabel = new JLabel("Sound");
-			soundLabel.setFont(new Font("Serif", Font.BOLD,36));
+			soundLabel.setFont(new Font("Serif", Font.BOLD,30));
 
 			radioLabel = new JLabel("Volume");
 			radioLabel.setFont(new Font("Serif", Font.BOLD,16));
@@ -114,10 +115,7 @@ public class Settings extends JPanel {
 			freqButton.addActionListener(new ActionListener(){
 				boolean active = false;
 				public void actionPerformed(ActionEvent e){
-					
 					active = active == true ? false : true;
-					
-					
 					if(active == true){
 						freqButton.setText("FM");
 					}
@@ -131,6 +129,7 @@ public class Settings extends JPanel {
 			cdButton.setBackground(Color.decode("#FF3333"));
 			freqLabel = new JLabel("Frequency:");
 			freqLabel.setFont(new Font("Serif", Font.BOLD,16));
+			
 			JPanel musicButtons = new JPanel(new GridLayout(1,3));
 			radButton.setText("RADIO");
 			radButton.addActionListener(new ActionListener(){
@@ -234,7 +233,8 @@ public class Settings extends JPanel {
 			cdCard.add(cdStatusLabel);
 			
 			//Adding content
-			theContent.add(new JLabel("Settings"));
+			settings.setFont(new Font("Sans Serif", Font.BOLD, 30));
+			theContent.add(settings);
 			theContent.add(climateLabel);
 			theContent.add(climateControl);
 			theContent.add(ventLabel);
