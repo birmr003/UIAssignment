@@ -422,7 +422,7 @@ public class MainMenu extends JPanel {
 		
 		
 		rightSide.add(new RouteManagement(rightSide, topMenu),  "Add Route");
-		rightSide.add(new JobManagement(rightSide),  "Job Management");
+		rightSide.add(new JobManagement(rightSide, topMenu),  "Job Management");
 		rightSide.add(new SupplyManagement(rightSide),  "Supply Management");
 		rightSide.add(new VehicleMaintenance(rightSide),  "Vehicle Maintenance");
 		rightSide.add(new Settings(rightSide),  "Settings");
