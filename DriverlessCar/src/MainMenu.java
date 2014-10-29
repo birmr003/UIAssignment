@@ -165,7 +165,7 @@ public class MainMenu extends JPanel {
 
 		// Top Left Button
 		r1_elem[2].setPreferredSize(new Dimension(174, 200));
-		buttonRouteManagement = new JButton("<html>" + "<p style='text-align:center'>ADD OR</p><br> CHANGE ROUTE</p>" + "</html>");
+		buttonRouteManagement = new JButton("<html>" + "<p style='text-align:center'>ROUTE</p><br> MANAGEMENT</p>" + "</html>");
 		buttonRouteManagement.setBackground(Color.decode("#39B1C6"));
 		buttonRouteManagement.setPreferredSize(new Dimension(174,200));
 		buttonRouteManagement.setFont(mainButtonFont);
