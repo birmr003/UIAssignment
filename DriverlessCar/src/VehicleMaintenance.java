@@ -12,9 +12,12 @@ import javax.swing.border.EmptyBorder;
  */
 public class VehicleMaintenance extends JPanel {
 	private JPanel contentPane;
+	private JLabel title;
 	
 	public VehicleMaintenance(JPanel content) {
-		add(new JLabel("Vehicle Maintenence"));
+		title = new JLabel("Vehicle Maintenence");
+		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
+		add(title);
 	}
 	
 

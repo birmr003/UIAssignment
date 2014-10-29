@@ -12,9 +12,13 @@ import javax.swing.border.EmptyBorder;
  */
 public class ManualDrivingControls extends JPanel {
 	private JPanel contentPane;
+	private JLabel title;
 	
 	public ManualDrivingControls(JPanel content) {
-		add(new JLabel("Manual Driving Controls"));
+		title = new JLabel("Manual Driving Controls", SwingConstants.CENTER);
+		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
+		
+		add(title);
 	}
 	
 

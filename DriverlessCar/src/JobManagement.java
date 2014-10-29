@@ -33,7 +33,7 @@ public class JobManagement extends JPanel {
 		content1.setMinimumSize(new Dimension(520,720));
 		
 		
-		JLabel title = new JLabel("Job Management");
+		JLabel title = new JLabel("\nJob Management",SwingConstants.CENTER);
 		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		content1.add(title);
 		
