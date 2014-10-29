@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 
- * @author Michael Bird
+ * @author Sean Stach
  *
  */
 public class Settings extends JPanel {

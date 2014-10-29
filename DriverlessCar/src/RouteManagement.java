@@ -22,7 +22,7 @@ public class RouteManagement extends JPanel {
 	
 	public RouteManagement(JPanel content, MenuBar m) {
 		
-		JPanel content1 = new JPanel(new GridLayout(6,1));
+		JPanel content1 = new JPanel(new GridLayout(8,1));
 		content1.setMinimumSize(new Dimension(520,720));
 		
 		JLabel title = new JLabel("Route Management", SwingConstants.CENTER);
@@ -35,7 +35,7 @@ public class RouteManagement extends JPanel {
 		menubar = m;
 		destination = new JTextArea();
 		destination.setFont(new Font("Sans Serif", Font.BOLD, 30));
-		destination.setPreferredSize(new Dimension(520, 70));
+		destination.setPreferredSize(new Dimension(500, 50));
 
 		
 		
@@ -47,11 +47,10 @@ public class RouteManagement extends JPanel {
 		content1.add(new JLabel(""));
 		content1.add(destinationLabel);
 		content1.add(destination);
-		///content1.add(new JLabel(""));
-		//content1.add(buttonSetDestination);
-		//content1.add(new JLabel(""));
-		//content1.add(new JLabel(""));
-		//content1.add(buttonPatrol);
+		content1.add(buttonSetDestination);
+		content1.add(new JLabel(""));
+		content1.add(new JLabel(""));
+		content1.add(buttonPatrol);
 		
 		
 		

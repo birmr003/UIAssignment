@@ -17,6 +17,8 @@ public class JobManagement extends JPanel {
 
 	private JPanel contentPane;
 	private String[] jobs;
+	private JLabel currentJob = new JLabel();
+	private JLabel currentJobLabel = new JLabel();
 	
 	// not necessarily needed, but added anyway
 	public int jobCount;
@@ -33,11 +35,19 @@ public class JobManagement extends JPanel {
 		content1.setMinimumSize(new Dimension(520,720));
 		
 		
-		JLabel title = new JLabel("\nJob Management",SwingConstants.CENTER);
+		JLabel title = new JLabel("Job Management",SwingConstants.CENTER);
+		
 		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		content1.add(title);
 		
+		content1.add(new JLabel(""));
 		
+		
+		currentJobLabel = new JLabel("Current Job");
+		content1.add(currentJobLabel);
+		
+		
+		/*
 		String []addresses = {
 			"12 Smith Street, Salisbury Downs",
 			"8 Elm Street, Marion",
@@ -54,7 +64,7 @@ public class JobManagement extends JPanel {
 		
 		for(int i=0; i<4; i++){
 			content1.add(new JLabel("LOCATION: " + addresses[i] + " REASON: " + reasons[i]));
-		}
+		}*/
 		
 		add(content1);
 	}
