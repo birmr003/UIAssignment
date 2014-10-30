@@ -35,6 +35,7 @@ public class RouteManagement extends JPanel {
 		menubar = m;
 		destination = new JTextArea();
 		destination.setFont(new Font("Sans Serif", Font.BOLD, 30));
+		destination.setForeground(Color.BLUE);
 		destination.setPreferredSize(new Dimension(500, 50));
 
 		

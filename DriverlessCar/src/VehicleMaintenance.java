@@ -38,7 +38,7 @@ public class VehicleMaintenance extends JPanel {
 		titleServiceDetails = new JLabel("Service Details", JLabel.LEFT);
 		titleServiceDetails.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		
-		JPanel serviceDetails = new JPanel(new GridLayout(4,1,2,2));
+		JPanel serviceDetails = new JPanel(new GridLayout(6,1));
 		serviceDetails.setPreferredSize(new Dimension(width, 200));
 		
 		JLabel servicedetails[] = {
@@ -62,7 +62,7 @@ public class VehicleMaintenance extends JPanel {
 		 */
 		
 		
-		JPanel manufacturerDetails = new JPanel(new GridLayout(6,2,20,2));
+		JPanel manufacturerDetails = new JPanel(new GridLayout(6,2,0,2));
 		manufacturerDetails.setPreferredSize(new Dimension(width, 200));
 		
 		titleManufacturer = new JLabel("Manufacturer", JLabel.LEFT);

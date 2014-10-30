@@ -1,6 +1,12 @@
 package Helpers;
 
-
+/**
+ * 
+ * Just a basic class to mix together a swing timer and JLabel update.
+ * 
+ * @author Michael Bird
+ *
+ */
 public final class Time
 {
 	private int seconds=0;

@@ -17,8 +17,10 @@ public class JobManagement extends JPanel {
 
 	private JPanel contentPane;
 	private String[] jobs;
-	private JLabel currentJob = new JLabel();
 	private JLabel currentJobLabel = new JLabel();
+	private JTextArea currentJob;
+	private JButton buttonCancel;
+	private int width = 430;
 	
 	// not necessarily needed, but added anyway
 	public int jobCount;
@@ -30,9 +32,20 @@ public class JobManagement extends JPanel {
 	public JobManagement(JPanel content, MenuBar m) {
 		contentPane = content;
 		
-		//TODO::entire panel design :)
-		JPanel content1 = new JPanel(new GridLayout(7,0));
-		content1.setMinimumSize(new Dimension(520,720));
+		
+		JPanel content1 = new JPanel(new FlowLayout());
+		content1.setPreferredSize(new Dimension(width,700));
+		
+		JPanel space[] ={
+				new JPanel(),
+				new JPanel(),
+				new JPanel(),
+				new JPanel()
+		};
+		
+		for(JPanel i : space){
+			i.setPreferredSize(new Dimension(width,16));
+		}
 		
 		
 		JLabel title = new JLabel("Job Management",SwingConstants.CENTER);
@@ -40,12 +53,28 @@ public class JobManagement extends JPanel {
 		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		content1.add(title);
 		
-		content1.add(new JLabel(""));
+		content1.add(space[0]);
 		
 		
-		currentJobLabel = new JLabel("Current Job");
+		/*
+		 * ------------------------------------------------------------------------------
+		 * Current Job  - label + cancel button
+		 * ------------------------------------------------------------------------------
+		 */
+		
+		
+		currentJobLabel = new JLabel("Current Job", JLabel.LEFT);
+		currentJobLabel.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		content1.add(currentJobLabel);
+		currentJob = new JTextArea();
+		currentJob.setPreferredSize(new Dimension(width,50));
+		currentJob.setEditable(false);
 		
+		buttonCancel = new JButton("Cancel Job");
+		buttonCancel.setPreferredSize(new Dimension(width,50));
+		
+		content1.add(currentJob);
+		content1.add(buttonCancel);
 		
 		/*
 		String []addresses = {
@@ -67,6 +96,22 @@ public class JobManagement extends JPanel {
 		}*/
 		
 		add(content1);
+		buttonListeners();
 	}
+	
+	
+	public void buttonListeners(){
+		buttonCancel.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				buttonCancel.setFocusPainted(false);
+				currentJob.setText("asdasdasdasd");
+			}
+		});		
+		
+	
+		
+		
+	}
+	
 	
 }
