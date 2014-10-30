@@ -41,7 +41,7 @@ public class RouteManagement extends JPanel {
 		
 		add(content1);
 		destinationLabel = new JLabel("Add/Modify Route");
-		destinationLabel.setFont(new Font("Sans Serif", Font.BOLD,30));
+		destinationLabel.setFont(new Font("Sans Serif", Font.BOLD,24));
 		
 		content1.add(title);
 		//content1.add(new JLabel(""));
