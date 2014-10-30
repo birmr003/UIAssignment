@@ -127,6 +127,7 @@ public class JobManagement extends JPanel {
 			final int j = i;
 			jobRow[i].setPreferredSize(new Dimension(width, 40));
 			jobTextBox[i].setContentType("text/html");
+			jobTextBox[i].setEditable(false);
 			jobTextBox[i].setPreferredSize(new Dimension(width-110,40));
 			jobRow[i].add(jobTextBox[i],BorderLayout.WEST);
 			

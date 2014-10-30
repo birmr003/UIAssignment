@@ -49,7 +49,9 @@ public class Settings extends JPanel {
 		JPanel theContent = new JPanel(new GridLayout(12,1,0,5));
 			
 			
-			
+		auxButton.setFocusPainted(false);
+		radButton.setFocusPainted(false);
+		cdButton.setFocusPainted(false);
 			//Climate control with slider
 			climateLabel = new JLabel("Climate");
 			climateLabel.setFont(new Font("Sans Serif", Font.BOLD,30));
@@ -182,6 +184,7 @@ public class Settings extends JPanel {
 			JPanel cdButtons = new JPanel(new GridLayout(1,6));
 			
 			JButton playBtn = new JButton("Play");
+			playBtn.setFocusPainted(false);
 			playBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){				
 					cdStatusLabel.setText("Playing " + currentSongStr + "...");
@@ -190,6 +193,7 @@ public class Settings extends JPanel {
 			cdButtons.add(playBtn);
 			
 			JButton pauseBtn = new JButton("Pause");
+			pauseBtn.setFocusPainted(false);
 			pauseBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){				
 					cdStatusLabel.setText(currentSongStr + " Paused");
@@ -198,6 +202,7 @@ public class Settings extends JPanel {
 			cdButtons.add(pauseBtn);
 			
 			JButton stopBtn = new JButton("Stop");
+			stopBtn.setFocusPainted(false);
 			stopBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){				
 					cdStatusLabel.setText(currentSongStr + " Stopped");
@@ -206,6 +211,7 @@ public class Settings extends JPanel {
 			cdButtons.add(stopBtn);
 			
 			JButton prevBtn = new JButton("PREV");
+			prevBtn.setFocusPainted(false);
 			prevBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){				
 					if(currentSongStr.equals("Funky Town")){
@@ -219,6 +225,7 @@ public class Settings extends JPanel {
 			cdButtons.add(prevBtn);
 			
 			JButton nextBtn = new JButton("next");
+			nextBtn.setFocusPainted(false);
 			nextBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){				
 					if(currentSongStr.equals("Funky Town")){
@@ -230,7 +237,10 @@ public class Settings extends JPanel {
 				}
 			});
 			cdButtons.add(nextBtn);
-			cdButtons.add(new JButton("Eject"));
+			
+			JButton eject = new JButton("Eject");
+			eject.setFocusPainted(false);
+			cdButtons.add(eject);
 			
 			cdCard.add(cdButtons);
 			cdCard.add(cdStatusLabel);
