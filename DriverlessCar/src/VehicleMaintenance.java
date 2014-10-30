@@ -94,9 +94,13 @@ public class VehicleMaintenance extends JPanel {
 		
 		buttonRequestRepairs = new JButton("Request Emergency Repairs");
 		buttonRequestRepairs.setPreferredSize(new Dimension(width,50));
+		buttonRequestRepairs.setForeground(Color.decode("#FFFFFF"));
+		buttonRequestRepairs.setBackground(Color.decode("#003366"));
 		
 		buttonCallout = new JButton("Emergency Callout");
 		buttonCallout.setPreferredSize(new Dimension(width,50));
+		buttonCallout.setForeground(Color.decode("#FFFFFF"));
+		buttonCallout.setBackground(Color.decode("#003366"));
 		
 		
 		

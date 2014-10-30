@@ -19,11 +19,12 @@ public class RouteManagement extends JPanel {
 	private JTextArea destination;
 	private JButton buttonSetDestination;
 	private JButton buttonPatrol;
+	private int width = 430;
 	
 	public RouteManagement(JPanel content, MenuBar m) {
 		
-		JPanel content1 = new JPanel(new GridLayout(8,1));
-		content1.setMinimumSize(new Dimension(520,720));
+		JPanel content1 = new JPanel(new GridLayout(6,1));
+		content1.setPreferredSize(new Dimension(width,720));
 		
 		JLabel title = new JLabel("Route Management", SwingConstants.CENTER);
 		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
@@ -32,11 +33,17 @@ public class RouteManagement extends JPanel {
 		buttonSetDestination = new JButton("Set Destination");
 		buttonPatrol = new JButton("Patrol Area");
 		
+		buttonPatrol.setForeground(Color.decode("#FFFFFF"));
+		buttonPatrol.setBackground(Color.decode("#003366"));
+		
+		buttonSetDestination.setForeground(Color.decode("#FFFFFF"));
+		buttonSetDestination.setBackground(Color.decode("#003366"));
+		
 		menubar = m;
 		destination = new JTextArea();
 		destination.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		destination.setForeground(Color.BLUE);
-		destination.setPreferredSize(new Dimension(500, 50));
+		destination.setPreferredSize(new Dimension(width, 50));
 
 		
 		
@@ -45,11 +52,11 @@ public class RouteManagement extends JPanel {
 		destinationLabel.setFont(new Font("Sans Serif", Font.BOLD,30));
 		
 		content1.add(title);
-		content1.add(new JLabel(""));
+		//content1.add(new JLabel(""));
 		content1.add(destinationLabel);
 		content1.add(destination);
 		content1.add(buttonSetDestination);
-		content1.add(new JLabel(""));
+		//content1.add(new JLabel(""));
 		content1.add(new JLabel(""));
 		content1.add(buttonPatrol);
 		
