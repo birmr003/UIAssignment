@@ -9,7 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * Instead of making a screen for each camera feed, this screen displays the camera feed as specified
- * in the constructor. Four instances are needed for four camera feeds for example.
+ * in the constructor. Four instances are needed for four camera feeds for example. This is pretty much 
+ * hard coded in for more asthetic reasons.
  * 
  * @author Michael Bird
  *
@@ -67,12 +68,7 @@ public class CameraFeed extends JPanel {
 		if(contains == true){
 			
 			ImageIcon viewImage = new ImageIcon(CameraFeed.class.getResource(url));
-	
-
-			
-			
-			// TODO::set the size of the image to a reasonable size. Not necessarily the size of the panel
-			// because different of aspect ratios etc. 
+	 
 			JLabel l = new JLabel(viewImage);
 			
 			add(viewText);

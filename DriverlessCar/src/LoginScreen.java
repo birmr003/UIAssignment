@@ -161,7 +161,7 @@ public class LoginScreen extends JPanel {
 			}});
 		
 		for(int i = 0; i <= 25; i++){
-			final String temp = " " + keystrokes.charAt(i);
+			final String temp = "" + keystrokes.charAt(i);
 			JButton btn = new JButton(temp);
 			
 			btn.addActionListener(new ActionListener() {

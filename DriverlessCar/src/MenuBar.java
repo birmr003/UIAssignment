@@ -13,7 +13,11 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * 
+ * The menu bar is present on all pages except the login screen.
+ * <p>
+ * It shows the current destination, and other navigation related details on the left side. On the
+ * right side, the current time and a few descriptive icons are used to represent things such
+ * as the fuel, and current speed of the car.
  * @author Michael Bird
  *
  */

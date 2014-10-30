@@ -120,10 +120,14 @@ public class SupplyManagement extends JPanel {
 		JPanel contentPane3 = new JPanel(new GridLayout(8,1));
 		//Create submit button
 		JButton submitRequest = new JButton("Submit Request");
+		submitRequest.setForeground(Color.decode("#FFFFFF"));
+		submitRequest.setBackground(Color.decode("#393939"));
 		//Set the size of the button
 		submitRequest.setSize(50, 20);
 		//Attach actionListener to button to action upon user press
 		submitRequest.addActionListener(new SubmitActionAdapter(this));
+		submitRequest.setFocusPainted(false);
+		
 		//Add button to pane
 		contentPane3.add(submitRequest, BorderLayout.CENTER);
 		//Add pane to previous pane
@@ -181,6 +185,7 @@ class SubmitActionAdapter implements ActionListener
 {
 	//ActionListener for when user's press submit button 
 	SupplyManagement adaptee;
+	
 	SubmitActionAdapter(SupplyManagement adaptee){
 		this.adaptee = adaptee;
 	}

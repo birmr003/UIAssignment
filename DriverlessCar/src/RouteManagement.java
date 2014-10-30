@@ -7,7 +7,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 /**
- * 
+ * The base of operations for the operator to set or modify the current destination. The paramedic also has
+ * the option of choosing to toggle patrolling on/off.
  * @author Michael Bird
  *
  */
@@ -19,39 +20,62 @@ public class RouteManagement extends JPanel {
 	private JTextArea destination;
 	private JButton buttonSetDestination;
 	private JButton buttonPatrol;
+	private int width = 430;
 	
 	public RouteManagement(JPanel content, MenuBar m) {
 		
-		JPanel content1 = new JPanel(new GridLayout(7,0));
-		content1.setMinimumSize(new Dimension(520,720));
+		JPanel content1 = new JPanel(new FlowLayout());
+		content1.setPreferredSize(new Dimension(width,720));
 		
-		JLabel title = new JLabel("Route Management");
+		JLabel title = new JLabel("Route Management", SwingConstants.CENTER);
 		title.setFont(new Font("Sans Serif", Font.BOLD, 30));
 
 		
 		buttonSetDestination = new JButton("Set Destination");
+		buttonSetDestination.setPreferredSize(new Dimension(width,60));
+		
+		
+		JPanel space = new JPanel();
+		space.setPreferredSize(new Dimension(width,100));
 		buttonPatrol = new JButton("Patrol Area");
+		
+		buttonPatrol.setForeground(Color.decode("#FFFFFF"));
+		buttonPatrol.setBackground(Color.decode("#393939"));
+		buttonPatrol.setPreferredSize(new Dimension(width,60));
+		
+		buttonSetDestination.setForeground(Color.decode("#FFFFFF"));
+		buttonSetDestination.setBackground(Color.decode("#393939"));
 		
 		menubar = m;
 		destination = new JTextArea();
-		destination.setFont(new Font("Sans Serif", Font.BOLD, 30));
-		destination.setPreferredSize(new Dimension(520, 70));
+		destination.setWrapStyleWord(true);
+		destination.setLineWrap(true);
+		destination.setFont(new Font("Sans Serif", Font.BOLD, 20));
+		destination.setForeground(Color.BLUE);
+		destination.setPreferredSize(new Dimension(width, 60));
+		
+		destination.setText(m.destinationText.getText().substring(21));
 
 		
+		JPanel space2 = new JPanel();
+		space2.setPreferredSize(new Dimension(width,16));
 		
-		add(content1);
-		destinationLabel = new JLabel("Add/Modify Route");
-		destinationLabel.setFont(new Font("Sans Serif", Font.BOLD,24));
+		destinationLabel = new JLabel("Add/Modify Route", SwingConstants.LEFT);
+		destinationLabel.setPreferredSize(new Dimension(width,60));
+		destinationLabel.setFont(new Font("Sans Serif", Font.BOLD,30));
 		
-		content1.add(title);
-		//content1.add(new JLabel(""));
+
 		content1.add(destinationLabel);
 		content1.add(destination);
-		//content1.add(new JLabel(""));
 		content1.add(buttonSetDestination);
-		content1.add(new JLabel(""));
-		//content1.add(new JLabel(""));
+		content1.add(space);
 		content1.add(buttonPatrol);
+		
+		
+		add(title);
+		add(space2);
+		add(content1);
+		
 		
 		buttonListeners();
 
