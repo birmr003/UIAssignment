@@ -71,7 +71,8 @@ public class JobManagement extends JPanel {
 		 */
 		
 		
-		currentJobLabel = new JLabel("Current Job", JLabel.LEFT);
+		currentJobLabel = new JLabel("Current Job", SwingConstants.LEFT);
+		currentJobLabel.setPreferredSize(new Dimension(width,40));
 		currentJobLabel.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		
 		currentJobAddress = new JTextArea();
@@ -89,6 +90,8 @@ public class JobManagement extends JPanel {
 		
 		
 		buttonCancel = new JButton("Cancel Job");
+		buttonCancel.setForeground(Color.decode("#FFFFFF"));
+		buttonCancel.setBackground(Color.decode("#393939"));
 		buttonCancel.setPreferredSize(new Dimension(width,50));
 		
 		
@@ -98,7 +101,8 @@ public class JobManagement extends JPanel {
 		 * ------------------------------------------------------------------------------
 		 */
 		
-		JLabel titleAvailableJobs = new JLabel("Available Jobs", JLabel.LEFT);
+		JLabel titleAvailableJobs = new JLabel("Available Jobs", SwingConstants.LEFT);
+		titleAvailableJobs.setPreferredSize(new Dimension(width,40));
 		titleAvailableJobs.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		
 		
@@ -144,6 +148,8 @@ public class JobManagement extends JPanel {
 			
 			b.setMinimumSize(new Dimension(60,40));
 			b.setMaximumSize(new Dimension(60,40));
+			b.setForeground(Color.decode("#FFFFFF"));
+			b.setBackground(Color.decode("#393939"));
 			jobRow[i].add(b, BorderLayout.EAST);
 		}
 		
@@ -151,7 +157,6 @@ public class JobManagement extends JPanel {
 		
 		// add to content pane
 		content1.add(currentJobLabel);
-		content1.add(space[1]);
 		content1.add(currentJobAddress);
 		content1.add(currentJobDescription);
 		content1.add(buttonCancel);
@@ -169,6 +174,7 @@ public class JobManagement extends JPanel {
 		
 		// add to layout
 		add(title);
+		add(space[1]);
 		add(content1);
 		
 		buttonListeners();

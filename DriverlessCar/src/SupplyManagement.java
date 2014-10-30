@@ -121,7 +121,7 @@ public class SupplyManagement extends JPanel {
 		//Create submit button
 		JButton submitRequest = new JButton("Submit Request");
 		submitRequest.setForeground(Color.decode("#FFFFFF"));
-		submitRequest.setBackground(Color.decode("#003366"));
+		submitRequest.setBackground(Color.decode("#393939"));
 		//Set the size of the button
 		submitRequest.setSize(50, 20);
 		//Attach actionListener to button to action upon user press

@@ -112,6 +112,9 @@ public class Settings extends JPanel {
 			radVolControl.setLabelTable( volLabelTable );
 			radVolControl.setPaintLabels(true);
 			freqButton.setText("AM");
+			freqButton.setFocusPainted(false);
+			freqButton.setBackground(Color.decode("#393939"));
+			freqButton.setForeground(Color.decode("#FFFFFF"));
 			freqButton.addActionListener(new ActionListener(){
 				boolean active = false;
 				public void actionPerformed(ActionEvent e){

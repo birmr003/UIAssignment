@@ -34,10 +34,10 @@ public class RouteManagement extends JPanel {
 		buttonPatrol = new JButton("Patrol Area");
 		
 		buttonPatrol.setForeground(Color.decode("#FFFFFF"));
-		buttonPatrol.setBackground(Color.decode("#003366"));
+		buttonPatrol.setBackground(Color.decode("#393939"));
 		
 		buttonSetDestination.setForeground(Color.decode("#FFFFFF"));
-		buttonSetDestination.setBackground(Color.decode("#003366"));
+		buttonSetDestination.setBackground(Color.decode("#393939"));
 		
 		menubar = m;
 		destination = new JTextArea();
@@ -48,7 +48,7 @@ public class RouteManagement extends JPanel {
 		
 		
 		add(content1);
-		destinationLabel = new JLabel("Add/Modify Route", SwingConstants.CENTER);
+		destinationLabel = new JLabel("Add/Modify Route", SwingConstants.LEFT);
 		destinationLabel.setFont(new Font("Sans Serif", Font.BOLD,30));
 		
 		content1.add(title);
