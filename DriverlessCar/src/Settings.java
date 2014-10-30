@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.util.Hashtable;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 
 /**
@@ -11,6 +10,7 @@ import javax.swing.border.EmptyBorder;
  * @author Sean Stach
  *
  */
+@SuppressWarnings("serial")
 public class Settings extends JPanel {
 	
 	private JPanel contentPane;
