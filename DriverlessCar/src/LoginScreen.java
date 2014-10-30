@@ -1,15 +1,26 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 
 
 /**
+ * Class to control user login.
+ * A window launches with two panels for the user to enter their ID and password.
+ * A virtual keyboard is in the panel and the user clicks 'test' and clicks the "ENTER" key.
+ * When the user clicks "ENTER" the password field automatically fills and the cursor focuses at the end of the stream.
+ * When the 'LOGIN" is clicked or the user pushes "ENTER" the supplied credentials are checked for valid.
+ * If the user exists, the program moves to the main system screen.
+ * If the check fails, a dialog box informs the user of the problem and offers to try again.
  * 
- * @author Michael Bird
+ * @author Michael Bird & Susan Mayer
+ * Created 23rd. October 2014
+ * Version 1.0
  *
  */
+@SuppressWarnings("serial")
 public class LoginScreen extends JPanel {
 
 	
@@ -25,6 +36,13 @@ public class LoginScreen extends JPanel {
 	
 	private JPasswordField passwordField;
 	
+	//Setting up the virtual keyboard containers
+	private JButton enter;	
+	private JPanel keyboard;
+	private String keystrokes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	
+	
 	
 	/**
 	 * 
@@ -36,7 +54,7 @@ public class LoginScreen extends JPanel {
 		setOpaque(true);
 		setBackground(Color.gray.brighter());
 		submitButton = new JButton("Log in");
-		
+		submitButton.setFont(new Font("Sans Serif", Font.BOLD, 30));
 		
 		
 		
@@ -65,7 +83,6 @@ public class LoginScreen extends JPanel {
 		passwordField = new JPasswordField();
 		
 		// Fonts/Text Color
-		
 		userLabel.setFont(new Font("Sans Serif", Font.BOLD,48));
 		userField.setFont(new Font("Sans Serif",Font.PLAIN, 48));
 		userField.setForeground(Color.BLUE);
@@ -73,7 +90,33 @@ public class LoginScreen extends JPanel {
 		passwordLabel.setFont(new Font("Sans Serif", Font.BOLD,48));
 		passwordField.setFont(new Font("Sans Serif",Font.PLAIN, 48));
 		passwordField.setForeground(Color.BLUE);
-		
+		passwordField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+			char pw[] = {'t', 'e', 's', 't'};
+			
+			char userEnter[] = passwordField.getPassword();
+			
+			//Test for valid password
+			if(Arrays.equals(userEnter, pw) ){
+				//Clear both arrays on valid check!!
+				Arrays.fill(pw, (char) 0);
+				Arrays.fill(userEnter, (char) 0);
+				//Load main program screen 
+				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+				cardLayout.invalidateLayout(contentPane);
+				cardLayout.show(contentPane, "Main Menu");
+			}
+				
+			else{
+				JOptionPane.showMessageDialog(null, 
+						"Please enter in your correct User ID and Password.",
+						"Wrong Credentials",
+						JOptionPane.ERROR_MESSAGE);
+			}
+				
+					
+			}
+		});
 
 		
 		/*
@@ -89,8 +132,54 @@ public class LoginScreen extends JPanel {
 		title.add(t2);
 		
 		
+		keyboard = new JPanel(new GridLayout(4,0));
+		final JButton tab = new JButton("TAB");
+		keyboard.add(tab);
+		enter = new JButton("ENTER");
+		enter.setActionCommand("Enter");
 		
+		enter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				passwordField.setText("test");
+				//Set the keyboard response focus in the password field
+				passwordField.requestFocusInWindow(); 
+				
+				//Create a new robot to type enter automatically for test purposes
+				try {
+		            
+		            Robot robot = new Robot();
+		            robot.delay(4000);
+		            robot.keyPress(KeyEvent.VK_ENTER);
+		            
+		            
+		        } catch (AWTException a) {
+		            a.printStackTrace();
+		        }
+
+
+								
+			}});
 		
+		for(int i = 0; i <= 25; i++){
+			final String temp = "" + keystrokes.charAt(i);
+			JButton btn = new JButton(temp);
+			
+			btn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e){
+					if(e.getSource()!= enter){
+				   	    String actionCommand = e.getActionCommand().toLowerCase();
+					    userField.setText(userField.getText() + actionCommand);
+					}
+									
+			   }		
+				
+			});
+			
+			keyboard.add(btn);
+			keyboard.add(enter);
+		}
+        
+	
 		/*
 		 * ------------------------------------------------------------------------------
 		 * Add Components to Layout
@@ -102,6 +191,8 @@ public class LoginScreen extends JPanel {
 		loginForm.add(passwordLabel);
 		loginForm.add(passwordField);
 		loginForm.add(submitButton);
+		loginForm.add(keyboard);
+		
 		
 		
 		
@@ -117,31 +208,35 @@ public class LoginScreen extends JPanel {
 		// Will Present the user with a message if username && password != "test"
 		submitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(!(userField.getText().equals("test") && passwordField.getText().equals("test"))){
+				char pw[] = {'t', 'e', 's', 't'};
+				
+				char userEnter[] = passwordField.getPassword();
+				
+				//Test for valid password
+				if(Arrays.equals(userEnter, pw) ){
+					//Clear both arrays on valid check!!
+					Arrays.fill(pw, (char) 0);
+					Arrays.fill(userEnter, (char) 0);
+					//Load main program screen
+					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+					cardLayout.invalidateLayout(contentPane);
+					cardLayout.show(contentPane, "Main Menu");
+				}
+					
+				else{
 					JOptionPane.showMessageDialog(null, 
 							"Please enter in your correct User ID and Password.",
 							"Wrong Credentials",
-							JOptionPane.ERROR_MESSAGE
-							);
+							JOptionPane.ERROR_MESSAGE);
 				}
-				else{
-					userField.setText("");
-					passwordField.setText("");
-					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-					cardLayout.invalidateLayout(contentPane);
-					cardLayout.show(contentPane, "Main Menu");	
-				}
-							
 			}
-		});
-		
-		
+	});
+				
+				
 		// Add form to layout
 		add(loginForm);
 		
 	}
-	
-
 	
 	
 

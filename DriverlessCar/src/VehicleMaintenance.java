@@ -6,7 +6,8 @@ import javax.swing.border.EmptyBorder;
 
 
 /**
- * 
+ * Vehicle Maintenance is an information hub for manufacturer/service details. The paramedic can choose
+ * to request a callout/emergency repairs if needed.
  * @author Michael Bird
  *
  */
@@ -65,7 +66,7 @@ public class VehicleMaintenance extends JPanel {
 		JPanel manufacturerDetails = new JPanel(new GridLayout(6,2,0,2));
 		manufacturerDetails.setPreferredSize(new Dimension(width, 200));
 		
-		titleManufacturer = new JLabel("Manufacturer", JLabel.LEFT);
+		titleManufacturer = new JLabel("Manufacturer Details", JLabel.LEFT);
 		titleManufacturer .setFont(new Font("Sans Serif", Font.BOLD, 30));
 		JLabel manufacturerdetails[] = {
 				new JLabel(""),

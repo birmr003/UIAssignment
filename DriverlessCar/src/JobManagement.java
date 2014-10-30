@@ -160,6 +160,7 @@ public class JobManagement extends JPanel {
 		content1.add(currentJobLabel);
 		content1.add(currentJobAddress);
 		content1.add(currentJobDescription);
+		content1.add(space[2]);
 		content1.add(buttonCancel);
 		content1.add(space[0]);
 		content1.add(titleAvailableJobs);

@@ -14,7 +14,15 @@ import Helpers.Time;
 
 
 /**
- * 
+ * This is the main screen of the user interface.
+ * <p>
+ * Each of the screens accessible for the interface will be on the right side of the screen.
+ * The page is split in under the following parameters:
+ * <ul>
+ * <li>The left screen contains all buttons, GPS and navigation attributes.</li>
+ * <li>The right side of the screen contains the content of each individual piece of functionality. this is
+ * encapsulated under a series of JPanel's stored within a cardLayout.</li>
+ * </ul>
  * @author Michael Bird
  *
  */
@@ -275,22 +283,6 @@ public class MainMenu extends JPanel {
 		
 		// Left side button
 		r3_elem[2].setPreferredSize(new Dimension(175, 200));
-		/*
-		JPanel left_box = new JPanel();
-		left_box.setLayout(new BorderLayout(0,0));
-		left_box.setPreferredSize(new Dimension(175,200));
-
-		
-		JButton test = new JButton("Park Vehicle");
-		test.setPreferredSize(new Dimension(175,100));
-		
-		buttonEmergencyStop = new JButton("EMERGENCY STOP");
-		buttonEmergencyStop.setPreferredSize(new Dimension(175,100));
-		buttonEmergencyStop.setBackground(Color.decode("#F4AC42"));
-		
-		left_box.add(test, BorderLayout.NORTH);
-		left_box.add(buttonEmergencyStop, BorderLayout.SOUTH);*/
-		
 		
 		buttonEmergencyStop = new JButton("<html><p  style='text-align:center'>EMERGENCY</p>"
 				+ "<br><p style='text-align:center'>STOP</p><html>");
@@ -658,16 +650,7 @@ public class MainMenu extends JPanel {
 	
 	}
 	
-	/**
-	 * 
-	 */
 	public void toggleManualDriving(){
-		/*
-		String off = "<html><p style='text-align:center'>MANUAL DRIVING<p>"
-				+ "<br><p style='text-align:center'>OFF<p><html>"; 
-		String on = "<html><p style='text-align:center'>MANUAL DRIVING<p>"
-				+ "<br><p style='text-align:center'>ON<p><html>";*/
-		
 		String off = "<html><p style='text-align:center'>MANUAL DRIVING"
 				+ " ---- OFF</p><html>"; 
 		String on = "<html><p style='text-align:center'>MANUAL DRIVING"
@@ -684,10 +667,6 @@ public class MainMenu extends JPanel {
 		}
 	}
 	
-	
-	/**
-	 * 
-	 */
 	public void toggleEmergencyDriving(){
 		String off = "<html><p style='text-align:center'>EMERGENCY DRIVING"
 				+ " ---- OFF</p><html>"; 

@@ -17,11 +17,17 @@ import javax.swing.*;
  * to all other corresponding screens. The screens that should be linked
  * to from the main menu are:
  * <ul>
- * <li>screen 1</li>
+ *<li>Route Management</li>
+ *<li>Job Management</li>
+ *<li>Settings</li>
+ *<li>Login Screen(after logging out)</li>
+ *<li>Supply Management</li>
+ *<li>Camera Feeds</li>
+ *<li>Manual Controls</li>
  * </ul>
  * <p>
  * 
- * @author Sue Mayer, Michael Bird, Liam Murphy, Anthony Defazio, Sean Stach
+ * @author Sue Mayer, Michael Bird, Anthony Defazio, Sean Stach
  * @version 1.0
  * @date 12/10/2014
  */
