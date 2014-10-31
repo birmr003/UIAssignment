@@ -47,7 +47,7 @@ public class RouteManagement extends JPanel {
 		buttonSetDestination.setBackground(Color.decode("#393939"));
 		
 		menubar = m;
-		destination = new JTextArea();
+		destination = new JTextArea();		 
 		destination.setWrapStyleWord(true);
 		destination.setLineWrap(true);
 		destination.setFont(new Font("Sans Serif", Font.BOLD, 20));

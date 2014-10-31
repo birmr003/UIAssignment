@@ -221,7 +221,7 @@ public class MainMenu extends JPanel {
 		
 		// Middle - Map
 		r2_elem[1].setPreferredSize(new Dimension(300, r2.getPreferredSize().height));
-		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("Images/gps.jpg"));
+		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("Images/gpssnap.jpg"));
 		r2_elem[1].add(new JLabel(gpsImage));
 		
 		

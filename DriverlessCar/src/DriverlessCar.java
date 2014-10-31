@@ -1,13 +1,16 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * User Interfaces - Checkpoint 5: Implementation
+ * User Interfaces - Phase 5: Implementation
  * 
  * <p>
  * mainWindow.java
@@ -31,6 +34,7 @@ import javax.swing.*;
  * @version 1.0
  * @date 12/10/2014
  */
+
 public class DriverlessCar {
 
 	/*
@@ -55,6 +59,18 @@ public class DriverlessCar {
 		// This is the window that all of our panes will be stored in
 		JFrame frame = new JFrame("TEST MODE: Driverless Ambulance Interface v.1.0");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+		//Change the JFrame icon that is displayed
+		try{
+			ImageIcon frameIcon=new ImageIcon("ambo.gif");
+			frame.setIconImage(frameIcon.getImage());
+		}
+		catch (Exception e)
+		{
+		     System.out.println("Picture failed to load!"); 
+		}
+		
+ 	
 		
 		try {
 		    UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
