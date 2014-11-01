@@ -18,6 +18,9 @@ import javax.swing.border.EmptyBorder;
  * It shows the current destination, and other navigation related details on the left side. On the
  * right side, the current time and a few descriptive icons are used to represent things such
  * as the fuel, and current speed of the car.
+ * <p>
+ * Please note that some of the methods in the menu bar are depreciated due to design changes. Changing
+ * emergency mode and manual driving no longer has any place in the menu bar.
  * @author Michael Bird
  *
  */
@@ -53,7 +56,7 @@ public class MenuBar extends JPanel{
 	private String currentDrivingMode = "Automatic";
 	
 	
-	private JLabel timeText = new JLabel("");
+	private JLabel timeText;
 	
 	private java.util.Timer myTimer;
 	private java.util.TimerTask timerTask;
@@ -168,43 +171,26 @@ public class MenuBar extends JPanel{
 		destinationText.setForeground(Color.WHITE);
 		
 		
-		// Add components to the top panel of the left side
-		//topLeft.add(drivingMode);
-		//topLeft.add(emergencyModeStatus);
 		topLeft.setBackground(Color.decode("#FF5A09"));
 		
 		
+		timeText = new JLabel("", JLabel.CENTER);
 		
-		
-		
-		
-		//TODO::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		JLabel currentSuburb = new JLabel("Current Suburb: Adelaide", JLabel.CENTER);
 		
 		final Time c = new Time();
 		timerTask = new java.util.TimerTask() {
 		    @Override
 		    public void run() {
 		        timeText.setText("<html> <p style='text-align:center'>Duration Driving: " + c.time() + "</p><html>");
-		        
 		    }
 		};
 		
 		myTimer = new java.util.Timer();
 		myTimer.schedule(timerTask, 0, 1* 1000);
 		
+		topLeft.add(currentSuburb , BorderLayout.CENTER);
 		topLeft.add(timeText, BorderLayout.CENTER);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// TODO::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-		
-		
 		
 		
 		
