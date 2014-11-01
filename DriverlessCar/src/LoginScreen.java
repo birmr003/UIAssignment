@@ -92,19 +92,20 @@ public class LoginScreen extends JPanel {
 		passwordField.setForeground(Color.BLUE);
 		passwordField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-			char pw[] = {'t', 'e', 's', 't'};
+				//Test case for a user password set in the system
+				char pw[] = {'t', 'e', 's', 't'};
+				//Retrieve the entered password 
+				char userEnter[] = passwordField.getPassword();
 			
-			char userEnter[] = passwordField.getPassword();
-			
-			//Test for valid password
-			if(Arrays.equals(userEnter, pw) ){
-				//Clear both arrays on valid check!!
-				Arrays.fill(pw, (char) 0);
-				Arrays.fill(userEnter, (char) 0);
-				//Load main program screen 
-				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-				cardLayout.invalidateLayout(contentPane);
-				cardLayout.show(contentPane, "Main Menu");
+				//Test for valid password
+				if(Arrays.equals(userEnter, pw) ){
+					//Clear both arrays on valid check!!
+					Arrays.fill(pw, (char) 0);
+					Arrays.fill(userEnter, (char) 0);
+					//Load main program screen 
+					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+					cardLayout.invalidateLayout(contentPane);
+					cardLayout.show(contentPane, "Main Menu");
 			}
 				
 			else{
@@ -148,7 +149,7 @@ public class LoginScreen extends JPanel {
 				try {
 		            
 		            Robot robot = new Robot();
-		            robot.delay(4000);
+		            robot.delay(1000);
 		            robot.keyPress(KeyEvent.VK_ENTER);
 		            
 		            

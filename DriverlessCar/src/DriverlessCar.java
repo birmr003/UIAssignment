@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.swing.*;
 
 /**
- * User Interfaces - Checkpoint 5: Implementation
+ * User Interfaces - Phase 5: Implementation
  * 
  * <p>
  * mainWindow.java
