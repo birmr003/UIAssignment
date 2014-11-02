@@ -227,7 +227,7 @@ public class MenuBar extends JPanel{
 	
 	
 	/**
-	 * Switches the driving mode from auto to manual and vise versa.
+	 * Switches the driving mode from auto to manual and vice versa.
 	 */
 	public void changeDrivingMode(){
 		currentDrivingMode = (currentDrivingMode.equals("Automatic") ? "Manual" : "Automatic");

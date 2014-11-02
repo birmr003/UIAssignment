@@ -221,7 +221,7 @@ public class MainMenu extends JPanel {
 		
 		// Middle - Map
 		r2_elem[1].setPreferredSize(new Dimension(300, r2.getPreferredSize().height));
-		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("Images/gps.jpg"));
+		ImageIcon gpsImage = new ImageIcon(MainMenu.class.getResource("Images/gpsscreen.png"));
 		r2_elem[1].add(new JLabel(gpsImage));
 		
 		
@@ -412,7 +412,7 @@ public class MainMenu extends JPanel {
 		rightSide.setMaximumSize(new Dimension(520,720));
 		rightSide.setMinimumSize(new Dimension(520,720));
 		
-		
+		rightSide.add(new DefaultScreen(rightSide), "Main Menu");
 		rightSide.add(new RouteManagement(rightSide, topMenu),  "Add Route");
 		rightSide.add(new JobManagement(rightSide, topMenu),  "Job Management");
 		rightSide.add(new SupplyManagement(rightSide),  "Supply Management");
@@ -426,7 +426,7 @@ public class MainMenu extends JPanel {
 		rightSide.add(new CameraFeed(rightSide, "rearview"),  "Rear Camera View");
 		rightSide.add(new CameraFeed(rightSide, "leftview"),  "Left Camera View");
 		rightSide.add(new CameraFeed(rightSide, "rightview"),  "Right Camera View");
-		//rightSide.add(new CameraFeed(rightSide, "frontview"),  "Front Camera View");   // GPS??
+		
 		
 		return rightSide;
 	}
@@ -544,13 +544,11 @@ public class MainMenu extends JPanel {
 				setPainted(buttonLogout);
 				int selection = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout?",  JOptionPane.YES_NO_OPTION);
 				if(selection == JOptionPane.YES_OPTION){
-					
-					
-					
+										
 					// set default frame back to home screen
 					CardLayout cardLayout = (CardLayout) rightSide.getLayout();
 					cardLayout.invalidateLayout(contentPane);
-					cardLayout.show(rightSide, "Add Route");	
+					cardLayout.show(rightSide, "Main Menu");	
 					
 					
 					CardLayout logout = (CardLayout) contentPane.getLayout();

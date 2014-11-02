@@ -99,9 +99,10 @@ public class LoginScreen extends JPanel {
 			
 				//Test for valid password
 				if(Arrays.equals(userEnter, pw) ){
-					//Clear both arrays on valid check!!
-					Arrays.fill(pw, (char) 0);
-					Arrays.fill(userEnter, (char) 0);
+					//Clear both login fields!!
+					userField.setText("");
+					passwordField.setText("");
+					
 					//Load main program screen 
 					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
 					cardLayout.invalidateLayout(contentPane);
@@ -132,7 +133,7 @@ public class LoginScreen extends JPanel {
 		title.add(new JLabel("Please enter your credentials.", JLabel.CENTER));
 		title.add(t2);
 		
-		
+		//Create a container for a virtual keyboard
 		keyboard = new JPanel(new GridLayout(4,0));
 		final JButton tab = new JButton("TAB");
 		keyboard.add(tab);
@@ -215,9 +216,10 @@ public class LoginScreen extends JPanel {
 				
 				//Test for valid password
 				if(Arrays.equals(userEnter, pw) ){
-					//Clear both arrays on valid check!!
-					Arrays.fill(pw, (char) 0);
-					Arrays.fill(userEnter, (char) 0);
+					//Clear both login fields!!
+					userField.setText("");
+					passwordField.setText("");
+					
 					//Load main program screen
 					CardLayout cardLayout = (CardLayout) contentPane.getLayout();
 					cardLayout.invalidateLayout(contentPane);
